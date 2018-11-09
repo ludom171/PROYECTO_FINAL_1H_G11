@@ -79,11 +79,8 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         //guardar datos txt
         try {
             OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("meminterna.txt", Activity.MODE_PRIVATE));
-            //ValidarFecha();
 
-
-
-            archivo.write(txtcompleto + usuario.getText().toString() + ";" + contraseña.getText().toString() + ";" +nombre.getText().toString() + ";" +apellido.getText().toString() + ";" +correo.getText().toString() + ";" +celular.getText().toString()+";");
+            archivo.write(txtcompleto + usuario.getText().toString() + ";" + contraseña.getText().toString() + ";");
             archivo.flush();
             archivo.close();
         }catch (IOException e){

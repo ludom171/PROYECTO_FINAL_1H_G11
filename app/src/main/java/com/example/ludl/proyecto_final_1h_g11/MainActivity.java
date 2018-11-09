@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -64,8 +63,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             Log.e("Ficheros", "Error al leer fichero desde la memoria interna");
             //Toast.makeText(getApplicationContext(),"Fichero no Existente",Toast.LENGTH_SHORT).show();
-            //Creacion de archivo
 
+            //Creacion de archivo
             try
             {
                 OutputStreamWriter fout=
@@ -114,5 +113,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(newform);
             }
         });
+    }
+    public void onClick(View v) {
+
     }
 }
