@@ -6,36 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="130dp"
-        android:layout_marginEnd="252dp"
-        android:layout_marginRight="252dp"
-        android:layout_marginBottom="362dp"
-        android:text="Insertar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_aceptar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="122dp"
-        android:layout_marginLeft="122dp"
-        android:layout_marginTop="194dp"
-        android:layout_marginEnd="174dp"
-        android:layout_marginRight="174dp"
-        android:layout_marginBottom="120dp"
-        android:onClick="Aceptar"
-        android:text="Aceptar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
 </android.support.constraint.ConstraintLayout>
