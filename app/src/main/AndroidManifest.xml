@@ -19,6 +19,12 @@
         <activity android:name=".Vehiculos">
         </activity>
         <activity android:name=".Registro">
+    </activity>
+        <activity android:name=".Editar">
+        </activity>
+        <activity android:name=".Insertar">
+        </activity>
+        <activity android:name=".Eliminar">
         </activity>
     </application>
 

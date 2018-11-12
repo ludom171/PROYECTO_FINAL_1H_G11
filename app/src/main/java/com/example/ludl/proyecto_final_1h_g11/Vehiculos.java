@@ -26,9 +26,18 @@ import java.util.Map;
 
 public class Vehiculos extends AppCompatActivity {
 
+
+
     String lineatxt;
     String txtcompleto;
     // Hasta aqui cahe loco el resto ya no le comprendi
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.vehiculos);
+
+    }
 
 
     public  void  Editar(View view){
