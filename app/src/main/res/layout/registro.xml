@@ -48,6 +48,7 @@
             android:id="@+id/aceptar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Guardar"
             android:text="ACEPTAR"
             android:textSize="24sp" />
 
