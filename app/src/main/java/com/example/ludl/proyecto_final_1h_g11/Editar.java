@@ -1,4 +1,14 @@
 package com.example.ludl.proyecto_final_1h_g11;
 
-public class Editar {
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+public class Editar extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.editar);
+
+    }
+
 }
