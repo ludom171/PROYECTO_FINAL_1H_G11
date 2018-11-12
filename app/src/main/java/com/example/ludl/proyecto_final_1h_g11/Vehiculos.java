@@ -41,8 +41,6 @@ public class Vehiculos extends AppCompatActivity {
 
 
     public  void  Editar(View view){
-
-
         Intent newform = new Intent(Vehiculos.this,Editar.class);
         finish();
         startActivity(newform);
@@ -50,15 +48,12 @@ public class Vehiculos extends AppCompatActivity {
 
     public  void  Insertar(View view){
 
-
         Intent newform = new Intent(Vehiculos.this,Insertar.class);
         finish();
         startActivity(newform);
     }
 
     public  void  Eliminar(View view){
-
-
         Intent newform = new Intent(Vehiculos.this,Eliminar.class);
         finish();
         startActivity(newform);
