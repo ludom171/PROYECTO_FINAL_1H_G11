@@ -60,13 +60,13 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
     public  void  Guardar(View view){
 
         try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput("meminterna.txt"));
+            InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
             BufferedReader br = new BufferedReader(archivo);
             lineatxt = br.readLine();
             txtcompleto= "";
 
             while (lineatxt !=null){
-                txtcompleto=txtcompleto + lineatxt + "\n";
+                txtcompleto=txtcompleto + lineatxt ;
                 lineatxt=br.readLine();
             }
             br.close();
@@ -78,7 +78,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
         }
         //guardar datos txt
         try {
-            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("meminterna.txt", Activity.MODE_PRIVATE));
+            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("registro_usuarios.txt", Activity.MODE_PRIVATE));
 
             archivo.write(txtcompleto + usuario.getText().toString() + ";" + contraseña.getText().toString() + ";");
             archivo.flush();

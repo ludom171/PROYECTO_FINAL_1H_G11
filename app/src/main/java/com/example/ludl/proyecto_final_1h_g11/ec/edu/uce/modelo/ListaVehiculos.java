@@ -10,4 +10,19 @@ public class ListaVehiculos implements Serializable {
 
     private ArrayList<DatosVehiculos> lisvehiculo;
 
+    public ListaVehiculos(){
+        this.setLisvehiculo(new ArrayList<DatosVehiculos>());
+    }
+
+    public ArrayList<DatosVehiculos> getLisvehiculo() {
+        return lisvehiculo;
+    }
+
+    public void setLisvehiculo(ArrayList<DatosVehiculos> lisvehiculo) {
+        this.lisvehiculo = lisvehiculo;
+    }
+
+    public void AgregarVehiculo (DatosVehiculos datosVehiculos){
+        this.getLisvehiculo().add(datosVehiculos);
+    }
 }

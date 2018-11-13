@@ -9,9 +9,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,11 +25,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     String lineatxt,txtcompleto;
 
+    Button ingresar;
+    Button registro;
+
+    String datos[];
+
+    EditText user;
+    EditText pass;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        Button ingresar;
-        Button registro;
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -33,23 +44,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ingresar=(Button)findViewById(R.id.ingresar);
         registro=(Button)findViewById(R.id.registrar);
 
+        user=(EditText)findViewById(R.id.usuario);
+        pass=(EditText)findViewById(R.id.password);
+
         //Verificacion de archivo
         try
         {
             BufferedReader fin =
                     new BufferedReader(
                             new InputStreamReader(
-                                    openFileInput("meminterna.txt")));
+                                    openFileInput("registro_usuarios.txt")));
 
             String texto = fin.readLine();
             //Toast.makeText(getApplicationContext(),"Fichero Existente",Toast.LENGTH_SHORT).show();
             fin.close();
             try {
-                InputStreamReader archivo = new InputStreamReader(openFileInput("meminterna.txt"));
+                InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
                 BufferedReader br = new BufferedReader(archivo);
                 lineatxt = br.readLine();
                 txtcompleto= "";
 
+                while (lineatxt!=null){
+                    txtcompleto=txtcompleto+ lineatxt+";";
+                    datos= txtcompleto.split(";");
+                    lineatxt=br.readLine();
+                }
 
                 br.close();
                 archivo.close();
@@ -69,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
                 OutputStreamWriter fout=
                         new OutputStreamWriter(
-                                openFileOutput("meminterna.txt", Context.MODE_PRIVATE));
+                                openFileOutput("registro_usuarios.txt", Context.MODE_PRIVATE));
                 fout.close();
             }
             catch (Exception e)
@@ -83,15 +102,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
 
                 try {
-                    InputStreamReader archivo = new InputStreamReader(openFileInput("meminterna.txt"));
+                    InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
                     BufferedReader br = new BufferedReader(archivo);
                     lineatxt = br.readLine();
 
 
                     if (lineatxt !=null){
-                        Intent newform = new Intent(MainActivity.this,Vehiculos.class);
-                        finish();
-                        startActivity(newform);
+                        int posicion=0;
+                        while(posicion<datos.length){
+                            if(user.getText().toString().equals(datos[posicion]) && pass.getText().toString().equals(datos[posicion+1])){
+                                Intent newform = new Intent(MainActivity.this,Vehiculos.class);
+                                finish();
+                                startActivity(newform);
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
+
+                            }
+                            posicion=posicion+6;
+                        }
                     }else{
                         Toast.makeText(getApplicationContext(),"No existe Registros Disponibles",Toast.LENGTH_SHORT).show();
                     }
