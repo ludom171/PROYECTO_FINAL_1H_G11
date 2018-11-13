@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".ec.edu.uce.vista.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Vehiculos">
+        <activity android:name=".ec.edu.uce.vista.VistaVehiculos">
         </activity>
-        <activity android:name=".Registro">
+        <activity android:name=".ec.edu.uce.vista.VistaRegistro">
     </activity>
-        <activity android:name=".ec.edu.uce.vista.Editar">
+        <activity android:name=".ec.edu.uce.vista.VistaEditar">
         </activity>
-        <activity android:name=".Insertar">
+        <activity android:name=".ec.edu.uce.vista.VistaInsertar">
         </activity>
-        <activity android:name=".Eliminar">
+        <activity android:name=".ec.edu.uce.vista.VistaEliminar">
         </activity>
     </application>
 

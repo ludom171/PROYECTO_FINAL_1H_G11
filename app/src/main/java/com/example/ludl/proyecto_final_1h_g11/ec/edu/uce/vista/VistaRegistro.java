@@ -1,36 +1,22 @@
-package com.example.ludl.proyecto_final_1h_g11;
+package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.ludl.proyecto_final_1h_g11.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Array;
-import java.util.Calendar;
 
-public class Registro extends AppCompatActivity implements View.OnClickListener {
+public class VistaRegistro extends AppCompatActivity implements View.OnClickListener {
     EditText usuario;
     EditText contraseña;
     String lineatxt;
@@ -87,7 +73,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
         }
         Toast.makeText(this, "Guardado",Toast.LENGTH_SHORT).show();
-        Intent newform = new Intent(Registro.this,MainActivity.class);
+        Intent newform = new Intent(VistaRegistro.this,MainActivity.class);
         finish();
         startActivity(newform);
     }

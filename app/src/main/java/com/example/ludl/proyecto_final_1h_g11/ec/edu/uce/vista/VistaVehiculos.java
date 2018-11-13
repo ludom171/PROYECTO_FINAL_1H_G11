@@ -1,13 +1,13 @@
-package com.example.ludl.proyecto_final_1h_g11;
+package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista.Editar;
+import com.example.ludl.proyecto_final_1h_g11.R;
 
-public class Vehiculos extends AppCompatActivity {
+public class VistaVehiculos extends AppCompatActivity {
 
 
 
@@ -24,20 +24,20 @@ public class Vehiculos extends AppCompatActivity {
 
 
     public  void  Editar(View view){
-        Intent newform = new Intent(Vehiculos.this,Editar.class);
+        Intent newform = new Intent(VistaVehiculos.this,VistaEditar.class);
         finish();
         startActivity(newform);
     }
 
     public  void  Insertar(View view){
 
-        Intent newform = new Intent(Vehiculos.this,Insertar.class);
+        Intent newform = new Intent(VistaVehiculos.this,VistaInsertar.class);
         finish();
         startActivity(newform);
     }
 
     public  void  Eliminar(View view){
-        Intent newform = new Intent(Vehiculos.this,Eliminar.class);
+        Intent newform = new Intent(VistaVehiculos.this,VistaEliminar.class);
         finish();
         startActivity(newform);
     }
