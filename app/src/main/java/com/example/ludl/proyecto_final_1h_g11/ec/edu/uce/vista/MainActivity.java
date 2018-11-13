@@ -29,19 +29,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText user;
     EditText pass;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         ingresar=(Button)findViewById(R.id.ingresar);
         registro=(Button)findViewById(R.id.registrar);
 
         user=(EditText)findViewById(R.id.usuario);
         pass=(EditText)findViewById(R.id.password);
+
+
+
 
         //Verificacion de archivo
         try

@@ -13,7 +13,6 @@ public class ListaVehiculos {
 
     }
 
-
     public ArrayList<Vehiculo> getLisUsuario() {
         return lisVehiculo;
     }
@@ -25,6 +24,5 @@ public class ListaVehiculos {
     public void agregarUsuario(Vehiculo vehiculo){
         this.getLisUsuario().add(vehiculo);
     }
-
 
 }
