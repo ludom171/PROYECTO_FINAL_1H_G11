@@ -41,6 +41,9 @@ public class UsuarioControlador {
         this.lisUsuario = lisUsuario;
     }
 
+    public boolean login(String user,String pass){
+       return op.login(user,pass);
 
+    }
 
 }

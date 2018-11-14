@@ -3,10 +3,10 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 public class Usuario {
 
 
-    private String apellidos;
-    private String nombres;
-    private String cedula;
-    private String contrasena;
+    private String apellidos="";
+    private String nombres="";
+    private String cedula="";
+    private String contrasena="";
 
 
     public String getApellidos() {

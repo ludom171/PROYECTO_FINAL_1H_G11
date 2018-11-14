@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ludl.proyecto_final_1h_g11.R;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.UsuarioControlador;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,14 +29,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     EditText user;
     EditText pass;
+    UsuarioControlador controlador;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        controlador= new UsuarioControlador();
 
 
         ingresar=(Button)findViewById(R.id.ingresar);
@@ -43,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         user=(EditText)findViewById(R.id.usuario);
         pass=(EditText)findViewById(R.id.password);
-
-
 
 
         //Verificacion de archivo
@@ -101,35 +101,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                try {
-                    InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
-                    BufferedReader br = new BufferedReader(archivo);
-                    lineatxt = br.readLine();
-
-
-                    if (lineatxt !=null){
-                        int posicion=0;
-                        while(posicion<datos.length){
-                            if(user.getText().toString().equals(datos[posicion]) && pass.getText().toString().equals(datos[posicion+1])){
-                                Intent newform = new Intent(MainActivity.this,VistaVehiculos.class);
-                                finish();
-                                startActivity(newform);
-                            }else{
-                                Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
-
-                            }
-                            posicion=posicion+6;
-                        }
+                if(controlador.login(user.getText().toString(),pass.getText().toString())){
+                        Intent newform = new Intent(MainActivity.this,VistaVehiculos.class);
+                        finish();
+                        startActivity(newform);
                     }else{
-                        Toast.makeText(getApplicationContext(),"No existe Registros Disponibles",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
                     }
-                    br.close();
-                    archivo.close();
-
-                }catch (IOException e){
-
-                }
-            }
+           }
         });
 
         registro.setOnClickListener(new View.OnClickListener() {

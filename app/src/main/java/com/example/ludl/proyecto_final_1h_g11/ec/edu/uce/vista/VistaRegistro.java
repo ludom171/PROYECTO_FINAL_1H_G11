@@ -63,8 +63,8 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
             EditText auxPass =(EditText)findViewById(R.id.password_registro);
 
             Usuario auxUsuario = new Usuario();
-            auxUsuario.setApellidos(auxUser.getText().toString());
-            auxUsuario.setNombres(auxPass.getText().toString());
+            auxUsuario.setCedula(auxUser.getText().toString());
+            auxUsuario.setContrasena(auxPass.getText().toString());
 
 
             this.getUsuarioControlador().agregarUsuario(auxUsuario);
@@ -93,37 +93,5 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
 
     }
 
-    //metodo guardar datos en fichero txt
-    //
-    /*
-    public  void  Guardar(View view){
-        //llamar a controlador
-        try {
-            InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
-            BufferedRea();
-            txtcompleto= der br = new BufferedReader(archivo);
-            lineatxt = br.readLine"";
 
-            while (lineatxt !=null){
-                txtcompleto=txtcompleto + lineatxt ;
-                lineatxt=br.readLine();
-            }
-            br.close();
-            archivo.close();
-            //contraseña.setText(txtcompleto);
-        }catch (IOException e){
-        }
-        //guardar datos txt
-        try {
-            OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("registro_usuarios.txt", Activity.MODE_PRIVATE));
-            archivo.write(txtcompleto + usuario.getText().toString() + ";" + contraseña.getText().toString() + ";");
-            archivo.flush();
-            archivo.close();
-        }catch (IOException e){
-        }
-        Toast.makeText(this, "Guardado",Toast.LENGTH_SHORT).show();
-        Intent newform = new Intent(VistaRegistro.this,MainActivity.class);
-        finish();
-        startActivity(newform);
-    }*/
 }

@@ -1,89 +1,98 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
-import android.app.Application;
 import android.content.Context;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.nio.file.Files;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ServicioOperaciones  {
 
+     String fileUser="usuario.json";
+     String fileVehiculo="vehiculo.json";
+     Gson gson = new Gson();
+
+
+     /*###########usuario##############*/
     public void insertUsuario( Usuario usuario) {
-        comprobar("usuario.json");
-       //leer("usuario.json");
-        Gson gson = new Gson();
+        comprobar(fileUser);
+        String content= leerArchivo(fileUser);
+        List<Usuario> list =   json2ListUsuario(content);
+        if(list==null)
+            list=new ArrayList<>();
+        list.add(usuario);
 
-        escribirJson("usuario.json",gson.toJson(usuario).toString());
-
+        escribirArchivo(fileUser,gson.toJson(list).toString());
 
     }
 
+
+    /*###########vehiculo##############*/
     public void insertVehiculo( Vehiculo vehiculo){
-        Gson gson = new Gson();
-        // File file =
-        // comprobar("usuario.json");
-
-        System.out.println(  gson.toJson(vehiculo).toString());
-
-      //  Toast.makeText(this,gson.toJson(vehiculo).toString() ,Toast.LENGTH_SHORT).show();
-
-        try {
-            String filename = "vehiculo.json";
-            String fileContents = "Hello world!";
-            FileOutputStream outputStream;
-
-
-            outputStream = GlobalApplication.getAppContext().openFileOutput(filename, Context.MODE_PRIVATE);
-            outputStream.write(fileContents.getBytes());
-            outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        comprobar(fileVehiculo);
+        String content= leerArchivo(fileVehiculo);
+        List<Vehiculo> list =   json2ListVehiculo(content);
+        if(list==null)
+            list=new ArrayList<>();
+        list.add(vehiculo);
+        escribirArchivo(fileVehiculo,gson.toJson(list).toString());
 
     }
 
-    public void getTodosUsuarios(){}
+    public void eliminar( Long id){
+        comprobar(fileVehiculo);
+        String content= leerArchivo(fileVehiculo);
+        List<Vehiculo> list =   json2ListVehiculo(content);
+        //buscar en la lista el vehiculo y removerlo de la lista
 
-    public void updateUsuarios(){}
+
+        escribirArchivo(fileVehiculo,gson.toJson(list).toString());
+
+    }
+
+    public void actualizar( Vehiculo vehiculo){
+        comprobar(fileVehiculo);
+        String content= leerArchivo(fileVehiculo);
+        List<Vehiculo> list =   json2ListVehiculo(content);
+        //buscar por la placa y setar los datos del objeto con los datos
 
 
-    private String leer(String filename)  {
+        escribirArchivo(fileVehiculo,gson.toJson(list).toString());
+
+    }
+
+
+    //lee un archivo cualquiera
+    private String leerArchivo(String filename)  {
         try {
         File file = new File(GlobalApplication.getAppContext().getFilesDir(), filename);
-
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line = null;
-        String ls = System.getProperty("line.separator");
-        while ((line = reader.readLine()) != null) {
-            stringBuilder.append(line);
-            stringBuilder.append(ls);
-        }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        reader.close();
-       return stringBuilder.toString();
+        if(file.length()>0){
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            StringBuilder stringBuilder = new StringBuilder();
+            String line = null;
+            String ls = System.getProperty("line.separator");
+            while ((line = reader.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+            stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            reader.close();
+       return stringBuilder.toString();}
         } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
     }
 
-    private void escribirJson(String filename,String content){
+    //escribe
+    private void escribirArchivo(String filename, String content){
         FileOutputStream outputStream;
 
         try {
@@ -96,6 +105,19 @@ public class ServicioOperaciones  {
     }
 
 
+    private  List<Usuario> json2ListUsuario(String content)  {
+        Gson gson = new Gson();
+
+         List<Usuario> res = gson.fromJson(content, new TypeToken<List<Usuario>>(){}.getType());
+        return res;
+    }
+    private  List<Vehiculo> json2ListVehiculo(String content)  {
+        Gson gson = new Gson();
+
+        List<Vehiculo> res = gson.fromJson(content, new TypeToken<List<Vehiculo>>(){}.getType());
+        return res;
+    }
+
 
     private void comprobar( String filename) {
         File file = new File(GlobalApplication.getAppContext().getFilesDir(), filename);
@@ -107,6 +129,24 @@ public class ServicioOperaciones  {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean login(String user,String pass){
+        //cargar datos del json
+        boolean resp =false;
+        String content= leerArchivo("usuario.json");
+        List<Usuario> list =   json2ListUsuario(content);
+        //buscar usuario en la lista
+        for (int i = 0; i <list.size() ; i++) {
+
+        Usuario aux = list.get(i);
+        System.out.println(aux.getApellidos());
+        if(aux.getCedula().equals(user) && aux.getContrasena().equals(pass))
+          resp=true;
+
+        }
+        //responder peticion
+        return resp;
     }
     }
 

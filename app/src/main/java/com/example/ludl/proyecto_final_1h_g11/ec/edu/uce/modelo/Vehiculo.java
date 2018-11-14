@@ -1,16 +1,18 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Vehiculo {
 
-    private String vehiculo;
-    private String placa;
-    private String marca;
-    private Date fecFabricacion;
-    private Double costo;
-    private boolean matriculado;
-    private String color;
+    private Long id =Calendar.getInstance().getTimeInMillis();
+    private String vehiculo="";
+    private String placa="";
+    private String marca="";
+    private Date fecFabricacion= Calendar.getInstance().getTime();
+    private Double costo=0.0d;
+    private boolean matriculado=false;
+    private String color="";
 
     public void  Vehiculo (){
     }
