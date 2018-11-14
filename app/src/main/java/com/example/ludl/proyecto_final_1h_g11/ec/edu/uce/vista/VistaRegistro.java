@@ -40,9 +40,6 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
     }
 
     ///Variables Registro Usuario
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +58,7 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
 
 
     public void save(View v){
-try{
-
+        try{
             EditText auxUser =(EditText)findViewById(R.id.usuario_registro);
             EditText auxPass =(EditText)findViewById(R.id.password_registro);
 
@@ -82,8 +78,6 @@ try{
             ex.printStackTrace();
             this.mensaje("Datos No Guardados");
         }
-
-
     }
 
     public void mensaje(String texto){
@@ -103,10 +97,7 @@ try{
     //
     /*
     public  void  Guardar(View view){
-
         //llamar a controlador
-
-
         try {
             InputStreamReader archivo = new InputStreamReader(openFileInput("registro_usuarios.txt"));
             BufferedRea();
@@ -120,19 +111,15 @@ try{
             br.close();
             archivo.close();
             //contraseña.setText(txtcompleto);
-
         }catch (IOException e){
-
         }
         //guardar datos txt
         try {
             OutputStreamWriter archivo = new OutputStreamWriter(openFileOutput("registro_usuarios.txt", Activity.MODE_PRIVATE));
-
             archivo.write(txtcompleto + usuario.getText().toString() + ";" + contraseña.getText().toString() + ";");
             archivo.flush();
             archivo.close();
         }catch (IOException e){
-
         }
         Toast.makeText(this, "Guardado",Toast.LENGTH_SHORT).show();
         Intent newform = new Intent(VistaRegistro.this,MainActivity.class);

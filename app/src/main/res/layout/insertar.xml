@@ -48,6 +48,19 @@
             android:inputType="textPersonName" />
 
         <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marca" />
+
+        <EditText
+            android:id="@+id/txt_marca"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
             android:id="@+id/textView14"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,6 +112,7 @@
             android:id="@+id/btn_insertar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="saveVehiculo"
             android:text="INSERTAR VEHICULO" />
 
     </LinearLayout>

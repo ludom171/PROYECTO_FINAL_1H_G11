@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Vehiculo {
 
+    private String vehiculo;
     private String placa;
     private String marca;
     private Date fecFabricacion;
@@ -60,5 +61,13 @@ public class Vehiculo {
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(String vehiculo) {
+        this.vehiculo = vehiculo;
     }
 }

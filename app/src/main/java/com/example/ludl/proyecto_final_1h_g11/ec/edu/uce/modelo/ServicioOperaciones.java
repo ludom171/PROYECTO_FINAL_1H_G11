@@ -2,6 +2,7 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
 import android.app.Application;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -21,14 +22,34 @@ public class ServicioOperaciones extends Application {
        Gson gson = new Gson();
      // File file =
        // comprobar("usuario.json");
-
-
-
-
         System.out.println(  gson.toJson(usuario).toString());
 
         try {
-            String filename = "myfiasdasle.json";
+            String filename = "usuario.json";
+            String fileContents = "Hello world!";
+            FileOutputStream outputStream;
+
+
+            outputStream = GlobalApplication.getAppContext().openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(fileContents.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void insertVehiculo( Vehiculo vehiculo){
+        Gson gson = new Gson();
+        // File file =
+        // comprobar("usuario.json");
+
+        System.out.println(  gson.toJson(vehiculo).toString());
+
+        Toast.makeText(this,gson.toJson(vehiculo).toString() ,Toast.LENGTH_SHORT).show();
+
+        try {
+            String filename = "vehiculo.json";
             String fileContents = "Hello world!";
             FileOutputStream outputStream;
 
