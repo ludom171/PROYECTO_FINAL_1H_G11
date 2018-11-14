@@ -66,6 +66,12 @@
             android:layout_height="wrap_content"
             android:text="FECHA FABRICACION" />
 
+        <TextView
+            android:id="@+id/text_fecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/0/0" />
+
         <CalendarView
             android:id="@+id/calendario"
             android:layout_width="match_parent"
