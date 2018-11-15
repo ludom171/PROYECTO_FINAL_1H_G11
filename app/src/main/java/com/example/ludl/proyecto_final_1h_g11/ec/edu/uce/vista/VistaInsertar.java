@@ -76,9 +76,9 @@ public class VistaInsertar extends AppCompatActivity {
         try{
             EditText auxCar =(EditText)findViewById(R.id.txt_vehiculo);
             EditText auxPlaca =(EditText)findViewById(R.id.txt_placa);
-            EditText auxMarca =(EditText)findViewById(R.id.txt_vehiculo);
+            EditText auxMarca =(EditText)findViewById(R.id.txt_marca);
             //Date auxfecha =(Date) findViewById(R.id.calendario);
-            //EditText costo=(EditText) findViewById(R.id.txt_costo);
+            EditText auxCosto=(EditText) findViewById(R.id.txt_costo);
             //EditText auxmatricula=(EditText) findViewById(R.id.txt_costo);
             EditText auxColor=(EditText) findViewById(R.id.txt_color);
 
@@ -86,16 +86,20 @@ public class VistaInsertar extends AppCompatActivity {
 
             auxVehiculo.setVehiculo(auxCar.getText().toString());
             auxVehiculo.setPlaca(auxPlaca.getText().toString());
-            auxVehiculo.setPlaca(auxMarca.getText().toString());
-            auxVehiculo.setPlaca(auxColor.getText().toString());
+            auxVehiculo.setMarca(auxMarca.getText().toString());
+            auxVehiculo.setCosto(Double.valueOf(auxCosto.getText().toString()));
+            auxVehiculo.setColor(auxColor.getText().toString());
 
             this.getVehiculoControlador().agregarVehiculo(auxVehiculo);
 
             this.mensaje("Datos Guardados");
+
             auxCar.setText("");
             auxPlaca.setText("");
             auxMarca.setText("");
-            auxPlaca.setText("");
+            auxCosto.setText("");
+            auxColor.setText("");
+
         }catch (Exception ex){
             ex.printStackTrace();
             this.mensaje("Datos No Guardados");

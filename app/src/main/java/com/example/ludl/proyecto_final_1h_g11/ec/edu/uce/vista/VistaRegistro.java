@@ -66,14 +66,11 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
             auxUsuario.setCedula(auxUser.getText().toString());
             auxUsuario.setContrasena(auxPass.getText().toString());
 
-
             this.getUsuarioControlador().agregarUsuario(auxUsuario);
 
             this.mensaje("Datos Guardados");
             auxUser.setText("");
             auxPass.setText("");
-
-
         }catch (Exception ex){
             ex.printStackTrace();
             this.mensaje("Datos No Guardados");
@@ -91,6 +88,12 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
 
+    }
+
+    public  void  Regresar(View view){
+        Intent newform = new Intent(VistaRegistro.this,MainActivity.class);
+        finish();
+        startActivity(newform);
     }
 
 

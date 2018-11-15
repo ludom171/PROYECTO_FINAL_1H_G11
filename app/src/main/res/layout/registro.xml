@@ -56,6 +56,7 @@
             android:id="@+id/regresar_registro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="Regresar"
             android:text="REGRESAR"
             android:textSize="24sp" />
     </LinearLayout>

@@ -20,16 +20,12 @@ public class UsuarioControlador {
     public void agregarUsuario(Usuario usuario ){
 
         //llamar a metodo de persistencia gson
-
         op.insertUsuario(usuario);
     }
-
-
 
     private ArrayList<Usuario> lisUsuario;
 
     public UsuarioControlador(){
-
     }
 
 

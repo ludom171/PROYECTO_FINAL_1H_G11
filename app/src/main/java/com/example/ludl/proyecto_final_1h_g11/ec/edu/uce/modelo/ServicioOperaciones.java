@@ -43,7 +43,6 @@ public class ServicioOperaciones  {
             list=new ArrayList<>();
         list.add(vehiculo);
         escribirArchivo(fileVehiculo,gson.toJson(list).toString());
-
     }
 
     public void eliminar( Long id){
@@ -54,7 +53,6 @@ public class ServicioOperaciones  {
 
 
         escribirArchivo(fileVehiculo,gson.toJson(list).toString());
-
     }
 
     public void actualizar( Vehiculo vehiculo){
@@ -94,7 +92,6 @@ public class ServicioOperaciones  {
     //escribe
     private void escribirArchivo(String filename, String content){
         FileOutputStream outputStream;
-
         try {
             outputStream = GlobalApplication.getAppContext().openFileOutput(filename, Context.MODE_PRIVATE);
             outputStream.write(content.getBytes());
