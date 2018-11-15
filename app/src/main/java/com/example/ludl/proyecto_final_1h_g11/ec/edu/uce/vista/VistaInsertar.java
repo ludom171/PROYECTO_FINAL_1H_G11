@@ -98,6 +98,10 @@ public class VistaInsertar extends AppCompatActivity {
             auxCosto.setText("");
             auxColor.setText("");
 
+            Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
+            finish();
+            startActivity(newform);
+
         }catch (Exception ex){
             ex.printStackTrace();
             this.mensaje("Datos No Guardados");

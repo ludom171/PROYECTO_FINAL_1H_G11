@@ -21,4 +21,10 @@ public class VistaEditar extends AppCompatActivity {
         startActivity(newform);
     }
 
+    public  void  RegresarVEVV(View view){
+        Intent newform = new Intent(VistaEditar.this,VistaVehiculos.class);
+        finish();
+        startActivity(newform);
+    }
+
 }

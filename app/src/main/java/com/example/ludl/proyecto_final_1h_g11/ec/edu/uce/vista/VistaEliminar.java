@@ -21,4 +21,10 @@ public class VistaEliminar extends AppCompatActivity {
         startActivity(newform);
     }
 
+    public  void  RegresarVDVV(View view){
+        Intent newform = new Intent(VistaEliminar.this,VistaVehiculos.class);
+        finish();
+        startActivity(newform);
+    }
+
 }
