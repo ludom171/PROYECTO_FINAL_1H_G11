@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,7 +20,7 @@ import java.util.List;
 public class VistaVehiculos extends AppCompatActivity {
 
     ListView listaVehiculos;
-    String[] datosVehiculos;
+    String[] datosVehiculos= new String[]{"uno\nuno","dos","tres"};
 
     VehiculosControlador  controlador;
 
@@ -29,28 +30,17 @@ public class VistaVehiculos extends AppCompatActivity {
         setContentView(R.layout.vehiculos);
 
         listaVehiculos=(ListView)findViewById(R.id.listaVehiculos);
-
-        try{
-            Vehiculo auxVehiculo= new Vehiculo();
-            this.getVehiculoControlador();
-
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-        Toast.makeText(this, "hola",Toast.LENGTH_LONG).show();
-
         ArrayAdapter<String>adapter=new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,datosVehiculos);
         listaVehiculos.setAdapter(adapter);
 
+        listaVehiculos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "posicion"+position,Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
-
-
-    public VehiculosControlador getVehiculoControlador(){
-
-        return new VehiculosControlador();
-    }
-
 
     public  void  Editar(View view){
         Intent newform = new Intent(VistaVehiculos.this,VistaEditar.class);
