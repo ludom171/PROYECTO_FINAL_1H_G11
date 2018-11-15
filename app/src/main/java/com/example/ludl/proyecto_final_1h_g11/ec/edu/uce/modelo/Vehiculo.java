@@ -82,4 +82,14 @@ public class Vehiculo implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setVehiculo(String vehiculo, String placa, String marca, Date fecFabricacion, Double costo, boolean matriculado, String color) {
+        this.vehiculo = vehiculo;
+        this.placa = placa;
+        this.marca = marca;
+        this.fecFabricacion = fecFabricacion;
+        this.costo = costo;
+        this.matriculado = matriculado;
+        this.color = color;
+    }
 }

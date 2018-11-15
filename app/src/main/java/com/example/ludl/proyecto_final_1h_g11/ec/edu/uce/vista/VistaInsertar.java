@@ -6,15 +6,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
+
+import java.util.Date;
 
 
 public class VistaInsertar extends AppCompatActivity {
@@ -26,10 +28,12 @@ public class VistaInsertar extends AppCompatActivity {
     String date;
     CalendarView selecfecha;
     TextView auxFecha;
-    Double costo;
+    EditText costo;
     Boolean matricula;
     EditText color;
+    Button btnSave;
 
+    Vehiculo  auxVehiculo;
     Spinner opcionMatricula;
     String[] opciones =  {"Si","No"};
 
@@ -43,13 +47,12 @@ public class VistaInsertar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertar);
-        Intent i=getIntent();
-        Vehiculo vUpdate= (Vehiculo)i.getSerializableExtra("vehiculo");
-        if(vUpdate!=null)
-            cargarVehiculo(vUpdate);
+
+        btnSave = (Button)findViewById(R.id.btn_insertar);
         vehiculo = (EditText)findViewById(R.id.txt_vehiculo);
         placa = (EditText)findViewById(R.id.txt_placa);
         marca=(EditText) findViewById(R.id.txt_marca);
+        costo=(EditText) findViewById(R.id.txt_costo);
         selecfecha=(CalendarView) findViewById(R.id.calendario);
         auxFecha=(TextView) findViewById(R.id.text_fecha);
 
@@ -66,18 +69,16 @@ public class VistaInsertar extends AppCompatActivity {
                 auxFecha.setText(date);
             }
         });
-
+        Intent i=getIntent();
+         auxVehiculo=(Vehiculo)i.getSerializableExtra("vehiculo");
+        if(auxVehiculo!=null)
+            cargarVehiculo(auxVehiculo);
         Toast.makeText(this, date,Toast.LENGTH_SHORT).show();
 
     }
 
     public void saveVehiculo(View v){
         try{
-            EditText auxCar =(EditText)findViewById(R.id.txt_vehiculo);
-            EditText auxPlaca =(EditText)findViewById(R.id.txt_placa);
-            EditText auxMarca =(EditText)findViewById(R.id.txt_marca);
-            //Date auxfecha =(Date) findViewById(R.id.calendario);
-            EditText auxCosto=(EditText) findViewById(R.id.txt_costo);
 
             String seleccion=opcionMatricula.getSelectedItem().toString();
             if(seleccion.equals("Si")){
@@ -88,23 +89,27 @@ public class VistaInsertar extends AppCompatActivity {
 
             EditText auxColor=(EditText) findViewById(R.id.txt_color);
 
-            Vehiculo auxVehiculo= new Vehiculo();
+            if(auxVehiculo==null)
+            auxVehiculo= new Vehiculo();
 
-            auxVehiculo.setVehiculo(auxCar.getText().toString());
-            auxVehiculo.setPlaca(auxPlaca.getText().toString());
-            auxVehiculo.setMarca(auxMarca.getText().toString());
-            auxVehiculo.setCosto(Double.valueOf(auxCosto.getText().toString()));
+
+            auxVehiculo.setVehiculo(vehiculo.getText().toString());
+            System.out.println(vehiculo.getText().toString());
+            auxVehiculo.setPlaca(placa.getText().toString());
+            auxVehiculo.setMarca(marca.getText().toString());
+            auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
             auxVehiculo.setMatriculado(matricula);
-            auxVehiculo.setColor(auxColor.getText().toString());
+            auxVehiculo.setColor(color.getText().toString());
+            auxVehiculo.setFecFabricacion(new Date(selecfecha.getDate()));
 
-            this.getVehiculoControlador().agregarVehiculo(auxVehiculo);
+            this.getVehiculoControlador().guardarVehiculo(auxVehiculo);
 
             this.mensaje("Datos Guardados");
 
-            auxCar.setText("");
-            auxPlaca.setText("");
-            auxMarca.setText("");
-            auxCosto.setText("");
+            vehiculo.setText("");
+            placa.setText("");
+            marca.setText("");
+            costo.setText("");
             auxColor.setText("");
 
             Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
@@ -128,8 +133,15 @@ public class VistaInsertar extends AppCompatActivity {
         startActivity(newform);
     }
 
-    private void cargarVehiculo(Vehiculo vehiculo){
-        this.vehiculo.setText(vehiculo.getVehiculo());
-        this.placa.setText(vehiculo.getPlaca());
+    private void cargarVehiculo(Vehiculo v){
+        btnSave.setText("Actualizar");
+        this.vehiculo.setText(v.getVehiculo());
+        this.placa.setText(v.getPlaca());
+        this.marca.setText(v.getMarca());
+        this.color.setText(v.getColor());
+        //lo mismo para el resto de campos
+
+
+        Toast.makeText(getApplicationContext(),"Usurario",Toast.LENGTH_SHORT).show();
     }
 }

@@ -41,14 +41,29 @@ public class ServicioOperaciones {
 
 
     /*###########vehiculo##############*/
-    public void insertVehiculo(Vehiculo vehiculo) {
+    public void guardarVehiculo(Vehiculo v) {
+        System.out.println("guardar");
+        int auxSate = 1;
+        //1 nuevo
+        //2 actualizar
         comprobar(fileVehiculo);
         String content = leerArchivo(fileVehiculo);
         List<Vehiculo> list = json2ListVehiculo(content);
         if (list == null)
             list = new ArrayList<>();
-        list.add(vehiculo);
+        for (Vehiculo ve : list) {
+            if (ve.getId().equals(v.getId())) {
+                //actualizar el mismo vehiculo
+                ve.setVehiculo(v.getVehiculo(), v.getPlaca(), v.getMarca(), v.getFecFabricacion(), v.getCosto(), v.isMatriculado(), v.getColor());
+                auxSate = 2;
+            }
+
+        }
+        if (auxSate == 1)
+            list.add(v);
         escribirArchivo(fileVehiculo, gson.toJson(list).toString());
+
+
     }
 
     public boolean eliminarVehiculo(Vehiculo vehiculo) {
