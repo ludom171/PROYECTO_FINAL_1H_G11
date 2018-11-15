@@ -14,7 +14,6 @@ public class VehiculosControlador {
 
     }
 
-
     public void agregarVehiculo(Vehiculo vehiculo ){
 
         //llamar a metodo de persistencia gson
@@ -27,13 +26,17 @@ public class VehiculosControlador {
 
     }
 
-
     public ArrayList<Vehiculo> getList() {
         return lisVehiculo;
     }
 
     public void setLisUsuario(ArrayList<Usuario> lisUsuario) {
         this.lisVehiculo = lisVehiculo;
+    }
+
+    public boolean datos(String user,String pass){
+        return op.login(user,pass);
+
     }
 
 

@@ -30,7 +30,6 @@ public class ServicioOperaciones  {
         list.add(usuario);
 
         escribirArchivo(fileUser,gson.toJson(list).toString());
-
     }
 
 

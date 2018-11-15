@@ -9,11 +9,8 @@ import com.example.ludl.proyecto_final_1h_g11.R;
 
 public class VistaVehiculos extends AppCompatActivity {
 
-
-
     String lineatxt;
     String txtcompleto;
-    // Hasta aqui cahe loco el resto ya no le comprendi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
