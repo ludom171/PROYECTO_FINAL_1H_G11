@@ -32,7 +32,7 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
 
     //Variables Registro Usuario
     public static String vallistadoUsuarios ;
-    private UsuarioControlador usuarioControlador;
+
 
     public UsuarioControlador getUsuarioControlador(){
 

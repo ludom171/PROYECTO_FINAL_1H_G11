@@ -32,6 +32,12 @@ public class ServicioOperaciones  {
         escribirArchivo(fileUser,gson.toJson(list).toString());
     }
 
+    public List<Vehiculo> leerVehiculos(){
+        String content= leerArchivo(fileVehiculo);
+        List<Vehiculo> list =   json2ListVehiculo(content);
+        return  list;
+    }
+
 
     /*###########vehiculo##############*/
     public void insertVehiculo( Vehiculo vehiculo){

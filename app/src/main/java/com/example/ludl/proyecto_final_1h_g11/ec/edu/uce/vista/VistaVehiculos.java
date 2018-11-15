@@ -1,6 +1,7 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,33 +14,50 @@ import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.GlobalApplication;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista.adapter.AdapterVehiculo;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class VistaVehiculos extends AppCompatActivity {
 
-    ListView listaVehiculos;
-    String[] datosVehiculos= new String[]{"uno\nuno","dos","tres"};
 
-    VehiculosControlador  controlador;
+    private List<Vehiculo> vehiculos;
+
+
+
+    public VehiculosControlador getVehiculoControlador(){
+
+        return new VehiculosControlador();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehiculos);
+        vehiculos= getVehiculoControlador().getList();
+        ArrayList<Vehiculo> arrayOfUsers = new ArrayList<Vehiculo>(vehiculos);
+        AdapterVehiculo adapter = new AdapterVehiculo(this, arrayOfUsers);
+        final ListView listView = (ListView) findViewById(R.id.listaVehiculos);
+        listView.setAdapter(adapter);
 
-        listaVehiculos=(ListView)findViewById(R.id.listaVehiculos);
-        ArrayAdapter<String>adapter=new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,datosVehiculos);
-        listaVehiculos.setAdapter(adapter);
+       // listaVehiculos=(ListView)findViewById(R.id.listaVehiculos);
+       // ArrayAdapter<String>adapter=new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,datosVehiculos);
+       // listaVehiculos.setAdapter(adapter);
 
-        listaVehiculos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "posicion"+position,Toast.LENGTH_SHORT).show();
+                for(int a = 0; a < parent.getChildCount(); a++)
+                {
+                    parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
+                }
+
+                view.setBackgroundColor(Color.MAGENTA);
+                Toast.makeText(getApplicationContext(), "posicion"+position+" "+id,Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public  void  Editar(View view){
@@ -57,8 +75,9 @@ public class VistaVehiculos extends AppCompatActivity {
 
     public  void  Eliminar(View view){
         Intent newform = new Intent(VistaVehiculos.this,VistaEliminar.class);
+
         finish();
-        startActivity(newform);
+        startActivity(getIntent());
     }
 
     public  void  Desconectar(View view){

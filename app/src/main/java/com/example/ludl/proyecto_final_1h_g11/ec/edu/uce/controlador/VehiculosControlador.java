@@ -5,6 +5,7 @@ import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Usuario;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VehiculosControlador {
 
@@ -20,18 +21,16 @@ public class VehiculosControlador {
 
         op.insertVehiculo(vehiculo);
     }
-    private ArrayList<Vehiculo> lisVehiculo;
+
+
+
 
     public VehiculosControlador(){
 
     }
 
-    public ArrayList<Vehiculo> getList() {
-        return lisVehiculo;
-    }
-
-    public void setLisUsuario(ArrayList<Usuario> lisUsuario) {
-        this.lisVehiculo = lisVehiculo;
+    public List<Vehiculo> getList() {
+        return op.leerVehiculos();
     }
 
     public boolean datos(String user,String pass){

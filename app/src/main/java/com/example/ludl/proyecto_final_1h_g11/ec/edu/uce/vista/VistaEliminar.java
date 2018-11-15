@@ -26,5 +26,4 @@ public class VistaEliminar extends AppCompatActivity {
         finish();
         startActivity(newform);
     }
-
 }
