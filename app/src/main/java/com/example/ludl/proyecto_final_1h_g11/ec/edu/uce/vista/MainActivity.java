@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.UsuarioControlador;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.GlobalApplication;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -101,13 +103,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                if(controlador.login(user.getText().toString(),pass.getText().toString())){
+                File file = new File(GlobalApplication.getAppContext().getFilesDir(), "usuario.json");
+
+                if (!file.exists()) {
+                    Toast.makeText(getApplicationContext(),"No existen Usuarios Registrados",Toast.LENGTH_SHORT).show();
+                }else{
+                    if(controlador.login(user.getText().toString(),pass.getText().toString())){
                         Intent newform = new Intent(MainActivity.this,VistaVehiculos.class);
                         finish();
                         startActivity(newform);
                     }else{
                         Toast.makeText(getApplicationContext(),"Usuario Incorrecto",Toast.LENGTH_SHORT).show();
                     }
+                }
            }
         });
 
