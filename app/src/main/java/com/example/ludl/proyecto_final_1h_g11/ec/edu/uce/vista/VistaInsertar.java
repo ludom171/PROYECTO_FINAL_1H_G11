@@ -30,7 +30,7 @@ public class VistaInsertar extends AppCompatActivity {
     Boolean matricula;
     EditText color;
 
-    Spinner listaMatricula;
+    Spinner opcionMatricula;
     String[] opciones =  {"Si","No"};
 
 
@@ -50,12 +50,10 @@ public class VistaInsertar extends AppCompatActivity {
         selecfecha=(CalendarView) findViewById(R.id.calendario);
         auxFecha=(TextView) findViewById(R.id.text_fecha);
 
-        listaMatricula=(Spinner) findViewById(R.id.matricula);
+        opcionMatricula=(Spinner) findViewById(R.id.matricula);
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,android.R.layout.simple_spinner_item,opciones);
-        listaMatricula.setAdapter(adapter);
+        opcionMatricula.setAdapter(adapter);
 
-        //costo=(EditText) findViewById(R.id.txt_costo);
-        //matricula=
         color=(EditText) findViewById(R.id.txt_color);
 
         selecfecha.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -77,7 +75,14 @@ public class VistaInsertar extends AppCompatActivity {
             EditText auxMarca =(EditText)findViewById(R.id.txt_marca);
             //Date auxfecha =(Date) findViewById(R.id.calendario);
             EditText auxCosto=(EditText) findViewById(R.id.txt_costo);
-            //EditText auxmatricula=(EditText) findViewById(R.id.txt_costo);
+
+            String seleccion=opcionMatricula.getSelectedItem().toString();
+            if(seleccion.equals("Si")){
+                matricula=true;
+            }else if (seleccion.equals("No")){
+                matricula=false;
+            }
+
             EditText auxColor=(EditText) findViewById(R.id.txt_color);
 
             Vehiculo auxVehiculo= new Vehiculo();
@@ -86,6 +91,7 @@ public class VistaInsertar extends AppCompatActivity {
             auxVehiculo.setPlaca(auxPlaca.getText().toString());
             auxVehiculo.setMarca(auxMarca.getText().toString());
             auxVehiculo.setCosto(Double.valueOf(auxCosto.getText().toString()));
+            auxVehiculo.setMatriculado(matricula);
             auxVehiculo.setColor(auxColor.getText().toString());
 
             this.getVehiculoControlador().agregarVehiculo(auxVehiculo);
