@@ -25,8 +25,6 @@
         </activity>
         <activity android:name=".ec.edu.uce.vista.VistaInsertar">
         </activity>
-        <activity android:name=".ec.edu.uce.vista.VistaEliminar">
-        </activity>
     </application>
 
 </manifest>

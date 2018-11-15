@@ -53,10 +53,7 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
 
     }
 
-
     //variables Registro Usuarios
-
-
     public void save(View v){
         try{
             EditText auxUser =(EditText)findViewById(R.id.usuario_registro);
@@ -81,13 +78,10 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
         Toast.makeText(this, texto,Toast.LENGTH_LONG).show();
     }
 
-
-
     //variables Registro Usuarios
 
     @Override
     public void onClick(View v) {
-
     }
 
     public  void  Regresar(View view){
@@ -95,6 +89,5 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
         finish();
         startActivity(newform);
     }
-
 
 }

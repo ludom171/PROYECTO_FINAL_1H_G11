@@ -43,7 +43,10 @@ public class VistaInsertar extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertar);
-
+        Intent i=getIntent();
+        Vehiculo vUpdate= (Vehiculo)i.getSerializableExtra("vehiculo");
+        if(vUpdate!=null)
+            cargarVehiculo(vUpdate);
         vehiculo = (EditText)findViewById(R.id.txt_vehiculo);
         placa = (EditText)findViewById(R.id.txt_placa);
         marca=(EditText) findViewById(R.id.txt_marca);
@@ -119,12 +122,14 @@ public class VistaInsertar extends AppCompatActivity {
     }
 
 
-
-
     public  void  Aceptar(View view){
         Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
         finish();
         startActivity(newform);
     }
 
+    private void cargarVehiculo(Vehiculo vehiculo){
+        this.vehiculo.setText(vehiculo.getVehiculo());
+        this.placa.setText(vehiculo.getPlaca());
+    }
 }

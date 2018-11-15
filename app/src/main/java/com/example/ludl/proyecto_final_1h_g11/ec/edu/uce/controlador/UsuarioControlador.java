@@ -10,24 +10,19 @@ import java.util.ArrayList;
 
 public class UsuarioControlador {
 
-    public ServicioOperaciones  op = new ServicioOperaciones();
+    public ServicioOperaciones op = new ServicioOperaciones();
 
-    public void UsuarioControlador(){
-
+    public void UsuarioControlador() {
     }
 
-
-    public void agregarUsuario(Usuario usuario ){
-
-        //llamar a metodo de persistencia gson
+    public void agregarUsuario(Usuario usuario) {
         op.insertUsuario(usuario);
     }
 
     private ArrayList<Usuario> lisUsuario;
 
-    public UsuarioControlador(){
+    public UsuarioControlador() {
     }
-
 
     public ArrayList<Usuario> getLisUsuario() {
         return lisUsuario;
@@ -37,9 +32,8 @@ public class UsuarioControlador {
         this.lisUsuario = lisUsuario;
     }
 
-    public boolean login(String user,String pass){
-       return op.login(user,pass);
+    public boolean login(String user, String pass) {
+        return op.login(user, pass);
 
     }
-
 }

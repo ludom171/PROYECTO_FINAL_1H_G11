@@ -22,12 +22,11 @@ import java.util.List;
 
 public class VistaVehiculos extends AppCompatActivity {
 
+    private AdapterVehiculo adapter;
+    private Vehiculo seleccionado;
+    ArrayList<Vehiculo> arrayOfUsers;
 
-    private List<Vehiculo> vehiculos;
-
-
-
-    public VehiculosControlador getVehiculoControlador(){
+    public VehiculosControlador getVehiculoControlador() {
 
         return new VehiculosControlador();
     }
@@ -36,56 +35,50 @@ public class VistaVehiculos extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehiculos);
-        vehiculos= getVehiculoControlador().getList();
-        ArrayList<Vehiculo> arrayOfUsers = new ArrayList<Vehiculo>(vehiculos);
-        AdapterVehiculo adapter = new AdapterVehiculo(this, arrayOfUsers);
+
+        arrayOfUsers = new ArrayList<Vehiculo>(getVehiculoControlador().getList());
+        adapter = new AdapterVehiculo(this, arrayOfUsers);
         final ListView listView = (ListView) findViewById(R.id.listaVehiculos);
         listView.setAdapter(adapter);
-
-       // listaVehiculos=(ListView)findViewById(R.id.listaVehiculos);
-       // ArrayAdapter<String>adapter=new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1,datosVehiculos);
-       // listaVehiculos.setAdapter(adapter);
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for(int a = 0; a < parent.getChildCount(); a++)
-                {
+                seleccionado = adapter.getItem(position);
+
+                for (int a = 0; a < parent.getChildCount(); a++) {
                     parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
                 }
-
                 view.setBackgroundColor(Color.MAGENTA);
-                Toast.makeText(getApplicationContext(), "posicion"+position+" "+id,Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public  void  Editar(View view){
-        Intent newform = new Intent(VistaVehiculos.this,VistaEditar.class);
+    public void Editar(View view) {
+        Intent newform = new Intent(VistaVehiculos.this, VistaInsertar.class);
+        newform.putExtra("vehiculo",seleccionado);
         finish();
         startActivity(newform);
     }
 
-    public  void  Insertar(View view){
+    public void Insertar(View view) {
 
-        Intent newform = new Intent(VistaVehiculos.this,VistaInsertar.class);
+        Intent newform = new Intent(VistaVehiculos.this, VistaInsertar.class);
         finish();
         startActivity(newform);
     }
 
-    public  void  Eliminar(View view){
-        Intent newform = new Intent(VistaVehiculos.this,VistaEliminar.class);
-
-        finish();
-        startActivity(getIntent());
+    public void Eliminar(View view) {
+        Toast.makeText(getApplicationContext(), "Eliminando...", Toast.LENGTH_SHORT).show();
+        if (getVehiculoControlador().eliminar(seleccionado)) {
+            arrayOfUsers.remove(seleccionado);
+            adapter.notifyDataSetChanged();
+        }
     }
 
-    public  void  Desconectar(View view){
-        Intent newform = new Intent(VistaVehiculos.this,MainActivity.class);
+    public void Desconectar(View view) {
+        Intent newform = new Intent(VistaVehiculos.this, MainActivity.class);
         finish();
         startActivity(newform);
     }
-
-
-
 }

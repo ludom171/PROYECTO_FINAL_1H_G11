@@ -1,13 +1,12 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
-public class Usuario {
+import java.io.Serializable;
 
-
-    private String apellidos="";
-    private String nombres="";
-    private String cedula="";
-    private String contrasena="";
-
+public class Usuario implements Serializable{
+    private String apellidos = "";
+    private String nombres = "";
+    private String cedula = "";
+    private String contrasena = "";
 
     public String getApellidos() {
         return apellidos;

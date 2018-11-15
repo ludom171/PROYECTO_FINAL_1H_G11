@@ -1,20 +1,21 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Vehiculo {
+public class Vehiculo implements Serializable {
 
-    private Long id =Calendar.getInstance().getTimeInMillis();
-    private String vehiculo="";
-    private String placa="";
-    private String marca="";
-    private Date fecFabricacion= Calendar.getInstance().getTime();
-    private Double costo=0.0d;
-    private boolean matriculado=false;
-    private String color="";
+    private Long id = Calendar.getInstance().getTimeInMillis();
+    private String vehiculo = "";
+    private String placa = "";
+    private String marca = "";
+    private Date fecFabricacion = Calendar.getInstance().getTime();
+    private Double costo = 0.0d;
+    private boolean matriculado = false;
+    private String color = "";
 
-    public void  Vehiculo (){
+    public void Vehiculo() {
     }
 
     public String getPlaca() {
@@ -71,5 +72,14 @@ public class Vehiculo {
 
     public void setVehiculo(String vehiculo) {
         this.vehiculo = vehiculo;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

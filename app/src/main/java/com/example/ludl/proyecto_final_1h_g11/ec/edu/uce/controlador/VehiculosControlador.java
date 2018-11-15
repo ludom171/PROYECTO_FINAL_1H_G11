@@ -11,35 +11,21 @@ public class VehiculosControlador {
 
     public ServicioOperaciones op = new ServicioOperaciones();
 
-    public void VehiculosControlador(){
-
+    public void VehiculosControlador() {
     }
 
-    public void agregarVehiculo(Vehiculo vehiculo ){
-
-        //llamar a metodo de persistencia gson
-
+    public void agregarVehiculo(Vehiculo vehiculo) {
         op.insertVehiculo(vehiculo);
     }
 
-
-
-
-    public VehiculosControlador(){
-
+    public VehiculosControlador() {
     }
 
     public List<Vehiculo> getList() {
         return op.leerVehiculos();
     }
 
-    public boolean datos(String user,String pass){
-        return op.login(user,pass);
-
+    public boolean eliminar(Vehiculo vehiculo) {
+        return op.eliminarVehiculo(vehiculo);
     }
-
-
-
 }
-
-
