@@ -92,7 +92,6 @@ public class VistaInsertar extends AppCompatActivity {
             if(auxVehiculo==null)
             auxVehiculo= new Vehiculo();
 
-
             auxVehiculo.setVehiculo(vehiculo.getText().toString());
             System.out.println(vehiculo.getText().toString());
             auxVehiculo.setPlaca(placa.getText().toString());
