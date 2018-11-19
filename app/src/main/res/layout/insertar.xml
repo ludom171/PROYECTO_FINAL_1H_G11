@@ -131,8 +131,10 @@
                 android:id="@+id/btn_regresar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/boton_insertar_editar"
                 android:onClick="RegresarVehiculo"
-                android:text="Regresar" />
+                android:text="Regresar"
+                android:textColor="@android:color/background_light" />
 
         </LinearLayout>
     </ScrollView>

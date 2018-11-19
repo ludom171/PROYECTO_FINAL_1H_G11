@@ -169,7 +169,6 @@ public class VistaInsertar extends AppCompatActivity {
         //lo mismo para el resto de campos
 
 
-        //Toast.makeText(getApplicationContext(),"Usurario",Toast.LENGTH_SHORT).show();
     }
 
     public  void  RegresarVehiculo(View view){

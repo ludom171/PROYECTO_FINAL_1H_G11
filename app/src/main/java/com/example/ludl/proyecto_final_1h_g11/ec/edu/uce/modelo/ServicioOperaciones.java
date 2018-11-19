@@ -129,7 +129,6 @@ public class ServicioOperaciones {
 
     private List<Usuario> json2ListUsuario(String content) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
         List<Usuario> res = gson.fromJson(content, new TypeToken<List<Usuario>>() {
         }.getType());
         return res;
@@ -137,7 +136,6 @@ public class ServicioOperaciones {
 
     private List<Vehiculo> json2ListVehiculo(String content) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-
         List<Vehiculo> res = gson.fromJson(content, new TypeToken<List<Vehiculo>>() {
         }.getType());
         return res;
