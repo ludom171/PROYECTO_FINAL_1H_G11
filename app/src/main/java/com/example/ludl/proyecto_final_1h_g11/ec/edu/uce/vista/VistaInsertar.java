@@ -1,8 +1,11 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 import android.content.Intent;
+import android.icu.text.SimpleDateFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,8 @@ import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Date;
 
 
@@ -27,7 +32,7 @@ public class VistaInsertar extends AppCompatActivity {
     //Date fecha;
     String date;
     CalendarView selecfecha;
-
+    Date fechaDate;
     TextView auxFecha;
     EditText costo;
     Boolean matricula;
@@ -54,6 +59,7 @@ public class VistaInsertar extends AppCompatActivity {
         placa = (EditText)findViewById(R.id.txt_placa);
         marca=(EditText) findViewById(R.id.txt_marca);
         costo=(EditText) findViewById(R.id.txt_costo);
+
         selecfecha=(CalendarView) findViewById(R.id.calendario);
         auxFecha=(TextView) findViewById(R.id.text_fecha);
 
@@ -63,19 +69,28 @@ public class VistaInsertar extends AppCompatActivity {
 
         color=(EditText) findViewById(R.id.txt_color);
 
+
         selecfecha.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int anio, int mes, int dia) {
                 date = anio+"/"+mes+"/"+dia;
-
+                DateFormat formato;
+                formato= new java.text.SimpleDateFormat("yyyy/MM/dd");
+                try {
+                    fechaDate=(Date)formato.parse(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 auxFecha.setText(date);
+
             }
         });
         Intent i=getIntent();
          auxVehiculo=(Vehiculo)i.getSerializableExtra("vehiculo");
         if(auxVehiculo!=null)
             cargarVehiculo(auxVehiculo);
-        Toast.makeText(this, date,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, date,Toast.LENGTH_SHORT).show();
 
     }
 
@@ -97,7 +112,7 @@ public class VistaInsertar extends AppCompatActivity {
             auxVehiculo.setVehiculo(vehiculo.getText().toString());
             auxVehiculo.setPlaca(placa.getText().toString());
             auxVehiculo.setMarca(marca.getText().toString());
-            auxVehiculo.setFecFabricacion(new Date(selecfecha.getDate()));
+            auxVehiculo.setFecFabricacion(fechaDate);
             auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
             auxVehiculo.setMatriculado(matricula);
             auxVehiculo.setColor(color.getText().toString());
@@ -143,10 +158,17 @@ public class VistaInsertar extends AppCompatActivity {
         this.vehiculo.setText(v.getVehiculo());
         this.placa.setText(v.getPlaca());
         this.marca.setText(v.getMarca());
+        this.auxFecha.setText(v.getFecFabricacion().toString());
+        Boolean estadomatricula = v.isMatriculado();
+        if(estadomatricula){
+
+        }
+
+        this.costo.setText(v.getCosto().toString());
         this.color.setText(v.getColor());
         //lo mismo para el resto de campos
 
 
-        Toast.makeText(getApplicationContext(),"Usurario",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Usurario",Toast.LENGTH_SHORT).show();
     }
 }
