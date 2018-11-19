@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
@@ -51,7 +52,7 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         TextView marca = (TextView) convertView.findViewById(R.id.marca);
         TextView fecha = (TextView) convertView.findViewById(R.id.feFabrica);
         TextView costo = (TextView) convertView.findViewById(R.id.costo);
-        //TextView matriculado = (TextView) convertView.findViewById(R.id.matricula);
+        TextView matriculado = (TextView) convertView.findViewById(R.id.estadomatriculado);
         TextView color = (TextView) convertView.findViewById(R.id.color);
 
 
@@ -62,9 +63,14 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
         fecha.setText(v.getFecFabricacion().toString());
-        //Boolean estadomatricula=v.isMatriculado();
+        Boolean estadomatricula=v.isMatriculado();
+        if(estadomatricula){
+            matriculado.setText("Si");
+        }else {
+            matriculado.setText("No");
+        }
 
-        //matriculado.setText("Si");
+
         costo.setText(v.getCosto().toString());
 
         color.setText(v.getColor());

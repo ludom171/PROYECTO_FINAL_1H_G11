@@ -154,7 +154,7 @@
                 android:text="Matriculado:" />
 
             <TextView
-                android:id="@+id/matriculado"
+                android:id="@+id/estadomatriculado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"

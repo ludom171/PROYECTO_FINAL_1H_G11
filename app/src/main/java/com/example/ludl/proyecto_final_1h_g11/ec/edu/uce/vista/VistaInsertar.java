@@ -161,7 +161,7 @@ public class VistaInsertar extends AppCompatActivity {
         this.auxFecha.setText(v.getFecFabricacion().toString());
         Boolean estadomatricula = v.isMatriculado();
         if(estadomatricula){
-
+            Toast.makeText(this, estadomatricula.toString(),Toast.LENGTH_SHORT).show();
         }
 
         this.costo.setText(v.getCosto().toString());
