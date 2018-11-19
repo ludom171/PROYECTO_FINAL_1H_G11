@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo">
+    android:background="@drawable/fondo_ingreso_registro">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,22 +44,35 @@
             android:ems="10"
             android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/aceptar"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fondotexto"
-            android:onClick="save"
-            android:text="ACEPTAR"
-            android:textSize="24sp" />
+            android:layout_height="58dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/regresar_registro"
+            <Button
+                android:id="@+id/aceptar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondotexto"
+                android:onClick="save"
+                android:text="ACEPTAR"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/fondotexto"
-            android:onClick="Regresar"
-            android:text="REGRESAR"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/regresar_registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/fondotexto"
+                android:onClick="Regresar"
+                android:text="REGRESAR"
+                android:textSize="24sp" />
+        </LinearLayout>
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

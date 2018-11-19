@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondo2">
+    android:background="@drawable/fondo_vehiculos">
 
     <LinearLayout
         android:id="@+id/vehiculos"
@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/fondoboton"
+                android:background="@drawable/boton_vehiculo"
                 android:onClick="Insertar"
                 android:text="Insertar"
                 android:textColor="@android:color/background_light" />
@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/fondoboton"
+                android:background="@drawable/boton_vehiculo"
                 android:onClick="Eliminar"
                 android:text="Eliminar"
                 android:textColor="@android:color/background_light" />
@@ -56,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@drawable/fondoboton"
+                android:background="@drawable/boton_vehiculo"
                 android:onClick="Editar"
                 android:text="Editar"
                 android:textColor="@android:color/background_light" />
@@ -66,8 +66,10 @@
             android:id="@+id/button9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/boton_vehiculo"
             android:onClick="Desconectar"
-            android:text="Regresar" />
+            android:text="Regresar"
+            android:textColor="@android:color/background_light" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo3">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -21,8 +21,8 @@
                 android:id="@+id/textView8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="INGRESO VEHICULO"
                 android:gravity="center"
+                android:text="INGRESO VEHICULO"
                 android:textSize="30sp" />
 
             <TextView
@@ -122,8 +122,10 @@
                 android:id="@+id/btn_insertar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/boton_insertar_editar"
                 android:onClick="saveVehiculo"
-                android:text="INSERTAR VEHICULO" />
+                android:text="INSERTAR VEHICULO"
+                android:textColor="@android:color/background_light" />
 
         </LinearLayout>
     </ScrollView>

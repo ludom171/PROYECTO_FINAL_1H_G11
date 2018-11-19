@@ -7,13 +7,17 @@
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
+
 
 
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            >
 
             <TextView
                 android:id="@+id/editText2"
@@ -21,7 +25,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Vehiculo:" />
+                android:text="Vehiculo:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/vehiculo"
@@ -43,7 +48,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Placa:" />
+                android:text="Placa:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/placa"
@@ -65,7 +71,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Marca:" />
+                android:text="Marca:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/marca"
@@ -89,7 +96,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Fecha Fabricacion:" />
+                android:text="Fecha Fabricacion:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/feFabrica"
@@ -110,7 +118,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Costo:" />
+                android:text="Costo:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/costo"
@@ -131,7 +140,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Matriculado:" />
+                android:text="Matriculado:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/estadomatriculado"
@@ -153,7 +163,8 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textPersonName"
-                android:text="Color:" />
+                android:text="Color:"
+                android:background="#7addec"/>
 
             <TextView
                 android:id="@+id/color"

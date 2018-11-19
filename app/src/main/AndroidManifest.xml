@@ -21,8 +21,6 @@
         </activity>
         <activity android:name=".ec.edu.uce.vista.VistaRegistro">
     </activity>
-        <activity android:name=".ec.edu.uce.vista.VistaEditar">
-        </activity>
         <activity android:name=".ec.edu.uce.vista.VistaInsertar">
         </activity>
     </application>
