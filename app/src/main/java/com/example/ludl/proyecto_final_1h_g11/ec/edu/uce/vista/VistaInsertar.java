@@ -27,6 +27,7 @@ public class VistaInsertar extends AppCompatActivity {
     //Date fecha;
     String date;
     CalendarView selecfecha;
+
     TextView auxFecha;
     EditText costo;
     Boolean matricula;
@@ -66,6 +67,7 @@ public class VistaInsertar extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int anio, int mes, int dia) {
                 date = anio+"/"+mes+"/"+dia;
+
                 auxFecha.setText(date);
             }
         });

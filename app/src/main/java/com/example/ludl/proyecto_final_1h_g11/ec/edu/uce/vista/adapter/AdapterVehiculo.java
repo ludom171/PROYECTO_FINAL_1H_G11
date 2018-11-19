@@ -50,6 +50,8 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         TextView placa = (TextView) convertView.findViewById(R.id.placa);
         TextView marca = (TextView) convertView.findViewById(R.id.marca);
         TextView fecha = (TextView) convertView.findViewById(R.id.feFabrica);
+        TextView costo = (TextView) convertView.findViewById(R.id.costo);
+        //TextView matriculado = (TextView) convertView.findViewById(R.id.matricula);
         TextView color = (TextView) convertView.findViewById(R.id.color);
 
 
@@ -60,6 +62,11 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
         fecha.setText(v.getFecFabricacion().toString());
+        //Boolean estadomatricula=v.isMatriculado();
+
+        //matriculado.setText("Si");
+        costo.setText(v.getCosto().toString());
+
         color.setText(v.getColor());
 
 
