@@ -46,17 +46,22 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
 
         // Ver los input para poner los datos
        // TextView id = (TextView) convertView.findViewById(R.id.id);
-        TextView placa = (TextView) convertView.findViewById(R.id.placa);
-        TextView color = (TextView) convertView.findViewById(R.id.color);
         TextView vehiculo = (TextView) convertView.findViewById(R.id.vehiculo);
+        TextView placa = (TextView) convertView.findViewById(R.id.placa);
         TextView marca = (TextView) convertView.findViewById(R.id.marca);
+        TextView fecha = (TextView) convertView.findViewById(R.id.feFabrica);
+        TextView color = (TextView) convertView.findViewById(R.id.color);
+
+
 
         // llenar con la info cada item
        // id.setText(String.valueOf(v.getId()));
-        placa.setText(v.getPlaca());
-        color.setText(v.getColor());
         vehiculo.setText(v.getVehiculo());
+        placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
+        fecha.setText(v.getFecFabricacion().toString());
+        color.setText(v.getColor());
+
 
 
         // Return the completed view to render on screen

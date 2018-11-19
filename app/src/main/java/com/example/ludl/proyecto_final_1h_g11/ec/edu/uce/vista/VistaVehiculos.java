@@ -49,7 +49,7 @@ public class VistaVehiculos extends AppCompatActivity {
                 for (int a = 0; a < parent.getChildCount(); a++) {
                     parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
                 }
-                view.setBackgroundColor(Color.MAGENTA);
+                view.setBackgroundResource(R.color.yourColor);
             }
         });
     }

@@ -93,13 +93,15 @@ public class VistaInsertar extends AppCompatActivity {
             auxVehiculo= new Vehiculo();
 
             auxVehiculo.setVehiculo(vehiculo.getText().toString());
-            System.out.println(vehiculo.getText().toString());
             auxVehiculo.setPlaca(placa.getText().toString());
             auxVehiculo.setMarca(marca.getText().toString());
+            auxVehiculo.setFecFabricacion(new Date(selecfecha.getDate()));
             auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
             auxVehiculo.setMatriculado(matricula);
             auxVehiculo.setColor(color.getText().toString());
-            auxVehiculo.setFecFabricacion(new Date(selecfecha.getDate()));
+
+
+            //System.out.println(vehiculo.getText().toString());
 
             this.getVehiculoControlador().guardarVehiculo(auxVehiculo);
 
@@ -108,6 +110,8 @@ public class VistaInsertar extends AppCompatActivity {
             vehiculo.setText("");
             placa.setText("");
             marca.setText("");
+
+
             costo.setText("");
             auxColor.setText("");
 
