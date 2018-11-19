@@ -84,9 +84,6 @@ public class VistaInsertar extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 auxFecha.setText(date);
-
-
-
             }
         });
         Intent i=getIntent();
