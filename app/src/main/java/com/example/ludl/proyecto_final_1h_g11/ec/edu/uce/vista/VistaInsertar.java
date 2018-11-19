@@ -171,4 +171,12 @@ public class VistaInsertar extends AppCompatActivity {
 
         //Toast.makeText(getApplicationContext(),"Usurario",Toast.LENGTH_SHORT).show();
     }
+
+    public  void  RegresarVehiculo(View view){
+        Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
+        finish();
+        startActivity(newform);
+    }
+
+
 }
