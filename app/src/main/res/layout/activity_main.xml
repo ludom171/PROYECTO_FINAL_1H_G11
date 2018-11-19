@@ -16,7 +16,7 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            app:srcCompat="@mipmap/usuario" />
+            app:srcCompat="@mipmap/empleado" />
 
         <TextView
             android:id="@+id/textView"

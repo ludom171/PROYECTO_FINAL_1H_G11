@@ -9,27 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-       <!-- <TableRow
-            android:layout_width="315dp"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/editText"
-                android:layout_width="67dp"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Id:" />
-
-            <TextView
-                android:id="@+id/id"
-                android:layout_width="205dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:text="id"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="@android:color/black" />
-        </TableRow>-->
 
         <TableRow
             android:layout_width="match_parent"

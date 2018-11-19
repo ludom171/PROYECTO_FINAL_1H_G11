@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo2">
 
     <LinearLayout
         android:id="@+id/vehiculos"
@@ -14,14 +15,15 @@
         <TextView
             android:id="@+id/textView7"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
+            android:layout_height="59dp"
             android:gravity="center"
-            android:text="Lista vehiculos" />
+            android:text="LISTA VEHICULOS"
+            android:textSize="30sp" />
 
         <ListView
             android:id="@+id/listaVehiculos"
             android:layout_width="match_parent"
-            android:layout_height="439dp" />
+            android:layout_height="406dp" />
 
 
         <LinearLayout
@@ -34,24 +36,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/fondoboton"
                 android:onClick="Insertar"
-                android:text="Insertar" />
+                android:text="Insertar"
+                android:textColor="@android:color/background_light" />
 
             <Button
                 android:id="@+id/btn_eliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/fondoboton"
                 android:onClick="Eliminar"
-                android:text="Eliminar" />
+                android:text="Eliminar"
+                android:textColor="@android:color/background_light" />
 
             <Button
                 android:id="@+id/btn_editar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/fondoboton"
                 android:onClick="Editar"
-                android:text="Editar" />
+                android:text="Editar"
+                android:textColor="@android:color/background_light" />
         </LinearLayout>
 
         <Button
