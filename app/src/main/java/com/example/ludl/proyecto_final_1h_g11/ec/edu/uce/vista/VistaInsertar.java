@@ -22,6 +22,7 @@ import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 
 public class VistaInsertar extends AppCompatActivity {
@@ -38,6 +39,9 @@ public class VistaInsertar extends AppCompatActivity {
     Boolean matricula;
     EditText color;
     Button btnSave;
+    //EditText correo;
+
+    Boolean val_placa=false;
 
     Vehiculo  auxVehiculo;
     Spinner opcionMatricula;
@@ -59,6 +63,7 @@ public class VistaInsertar extends AppCompatActivity {
         placa = (EditText)findViewById(R.id.txt_placa);
         marca=(EditText) findViewById(R.id.txt_marca);
         costo=(EditText) findViewById(R.id.txt_costo);
+        //correo = (EditText)  findViewById(R.id.txt_correo);
 
         selecfecha=(CalendarView) findViewById(R.id.calendario);
         auxFecha=(TextView) findViewById(R.id.text_fecha);
@@ -95,51 +100,111 @@ public class VistaInsertar extends AppCompatActivity {
     }
 
     public void saveVehiculo(View v){
-        try{
 
-            String seleccion=opcionMatricula.getSelectedItem().toString();
-            if(seleccion.equals("Si")){
-                matricula=true;
-            }else if (seleccion.equals("No")){
-                matricula=false;
-            }
+        Pattern plc = Pattern.compile("^([A-Z]{3}-[0-9]{3,4})$");
+         if (plc.matcher(placa.getText().toString()).matches()== false){
+             placa.setError("Placa Incorrecta");
+             Toast.makeText(this, "Formato Incorrecto",Toast.LENGTH_SHORT).show();
+             val_placa=false;
+         }else {
+             placa.setError(null);
+             val_placa=true;
+             try{
 
-            EditText auxColor=(EditText) findViewById(R.id.txt_color);
+                 String seleccion=opcionMatricula.getSelectedItem().toString();
+                 if(seleccion.equals("Si")){
+                     matricula=true;
+                 }else if (seleccion.equals("No")){
+                     matricula=false;
+                 }
 
-            if(auxVehiculo==null)
-            auxVehiculo= new Vehiculo();
+                 EditText auxColor=(EditText) findViewById(R.id.txt_color);
 
-            auxVehiculo.setVehiculo(vehiculo.getText().toString());
-            auxVehiculo.setPlaca(placa.getText().toString());
-            auxVehiculo.setMarca(marca.getText().toString());
-            auxVehiculo.setFecFabricacion(fechaDate);
-            auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
-            auxVehiculo.setMatriculado(matricula);
-            auxVehiculo.setColor(color.getText().toString());
+                 if(auxVehiculo==null)
+                     auxVehiculo= new Vehiculo();
 
-
-            //System.out.println(vehiculo.getText().toString());
-
-            this.getVehiculoControlador().guardarVehiculo(auxVehiculo);
-
-            this.mensaje("Datos Guardados");
-
-            vehiculo.setText("");
-            placa.setText("");
-            marca.setText("");
+                 auxVehiculo.setVehiculo(vehiculo.getText().toString());
+                 auxVehiculo.setPlaca(placa.getText().toString());
+                 auxVehiculo.setMarca(marca.getText().toString());
+                 auxVehiculo.setFecFabricacion(fechaDate);
+                 auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
+                 auxVehiculo.setMatriculado(matricula);
+                 auxVehiculo.setColor(color.getText().toString());
+                 //auxVehiculo.setCorreo(correo.getText().toString());
 
 
-            costo.setText("");
-            auxColor.setText("");
+                 //System.out.println(vehiculo.getText().toString());
 
-            Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
-            finish();
-            startActivity(newform);
+                 this.getVehiculoControlador().guardarVehiculo(auxVehiculo);
 
-        }catch (Exception ex){
-            ex.printStackTrace();
-            this.mensaje("Datos No Guardados");
-        }
+                 this.mensaje("Datos Guardados");
+
+                 vehiculo.setText("");
+                 placa.setText("");
+                 marca.setText("");
+                 //correo.setText("");
+
+
+                 costo.setText("");
+                 auxColor.setText("");
+
+                 Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
+                 finish();
+                 startActivity(newform);
+
+             }catch (Exception ex){
+                 ex.printStackTrace();
+                 this.mensaje("Datos No Guardados");
+             }
+             Toast.makeText(this, "Formato Correcto",Toast.LENGTH_SHORT).show();
+         }
+//        try{
+//
+//            String seleccion=opcionMatricula.getSelectedItem().toString();
+//            if(seleccion.equals("Si")){
+//                matricula=true;
+//            }else if (seleccion.equals("No")){
+//                matricula=false;
+//            }
+//
+//            EditText auxColor=(EditText) findViewById(R.id.txt_color);
+//
+//            if(auxVehiculo==null)
+//            auxVehiculo= new Vehiculo();
+//
+//            auxVehiculo.setVehiculo(vehiculo.getText().toString());
+//            auxVehiculo.setPlaca(placa.getText().toString());
+//            auxVehiculo.setMarca(marca.getText().toString());
+//            auxVehiculo.setFecFabricacion(fechaDate);
+//            auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
+//            auxVehiculo.setMatriculado(matricula);
+//            auxVehiculo.setColor(color.getText().toString());
+//            //auxVehiculo.setCorreo(correo.getText().toString());
+//
+//
+//            //System.out.println(vehiculo.getText().toString());
+//
+//            this.getVehiculoControlador().guardarVehiculo(auxVehiculo);
+//
+//            this.mensaje("Datos Guardados");
+//
+//            vehiculo.setText("");
+//            placa.setText("");
+//            marca.setText("");
+//            //correo.setText("");
+//
+//
+//            costo.setText("");
+//            auxColor.setText("");
+//
+//            Intent newform = new Intent(VistaInsertar.this,VistaVehiculos.class);
+//            finish();
+//            startActivity(newform);
+//
+//        }catch (Exception ex){
+//            ex.printStackTrace();
+//            this.mensaje("Datos No Guardados");
+//        }
     }
 
     public void mensaje(String texto){
@@ -158,10 +223,11 @@ public class VistaInsertar extends AppCompatActivity {
         this.vehiculo.setText(v.getVehiculo());
         this.placa.setText(v.getPlaca());
         this.marca.setText(v.getMarca());
+        //this.correo.setText(v.getCorreo());
         this.auxFecha.setText(v.getFecFabricacion().toString());
         Boolean estadomatricula = v.isMatriculado();
         if(estadomatricula){
-            Toast.makeText(this, estadomatricula.toString(),Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(this, estadomatricula.toString(),Toast.LENGTH_SHORT).show();
         }
 
         this.costo.setText(v.getCosto().toString());

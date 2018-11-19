@@ -15,6 +15,8 @@ public class Vehiculo implements Serializable {
     private boolean matriculado = false;
     private String color = "";
 
+    //private String correo = "";
+
     public void Vehiculo() {
     }
 
@@ -83,6 +85,14 @@ public class Vehiculo implements Serializable {
         this.id = id;
     }
 
+    //public String getCorreo() {
+    //return correo;
+    //}
+
+    //public void setCorreo(String correo) {
+    //    this.correo = correo;
+    //}
+
     public void setVehiculo(String vehiculo, String placa, String marca, Date fecFabricacion, Double costo, boolean matriculado, String color) {
         this.vehiculo = vehiculo;
         this.placa = placa;
@@ -91,5 +101,6 @@ public class Vehiculo implements Serializable {
         this.costo = costo;
         this.matriculado = matriculado;
         this.color = color;
+        //this.correo = correo;
     }
 }

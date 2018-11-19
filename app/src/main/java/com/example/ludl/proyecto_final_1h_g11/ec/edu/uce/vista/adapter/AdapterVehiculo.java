@@ -54,6 +54,8 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         TextView costo = (TextView) convertView.findViewById(R.id.costo);
         TextView matriculado = (TextView) convertView.findViewById(R.id.estadomatriculado);
         TextView color = (TextView) convertView.findViewById(R.id.color);
+        //TextView correo = (TextView) convertView.findViewById(R.id.correo);
+
 
 
 
@@ -61,6 +63,7 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         vehiculo.setText(v.getVehiculo());
         placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
+        //correo.setText(v.getCorreo());
         fecha.setText(v.getFecFabricacion().toString());
         Boolean estadomatricula=v.isMatriculado();
         if(estadomatricula){
