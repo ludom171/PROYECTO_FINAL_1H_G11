@@ -36,22 +36,27 @@ public class VistaVehiculos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vehiculos);
 
-        arrayOfUsers = new ArrayList<Vehiculo>(getVehiculoControlador().getList());
-        adapter = new AdapterVehiculo(this, arrayOfUsers);
-        final ListView listView = (ListView) findViewById(R.id.listaVehiculos);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        File file = new File(GlobalApplication.getAppContext().getFilesDir(), "vehiculo.json");
+        if (!file.exists()) {
+            Toast.makeText(getApplicationContext(),"No exsite vehiculos reistrados",Toast.LENGTH_SHORT).show();
+        }else{
+            arrayOfUsers = new ArrayList<Vehiculo>(getVehiculoControlador().getList());
+            adapter = new AdapterVehiculo(this, arrayOfUsers);
+            final ListView listView = (ListView) findViewById(R.id.listaVehiculos);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                seleccionado = adapter.getItem(position);
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    seleccionado = adapter.getItem(position);
 
-                for (int a = 0; a < parent.getChildCount(); a++) {
-                    parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
+                    for (int a = 0; a < parent.getChildCount(); a++) {
+                        parent.getChildAt(a).setBackgroundColor(Color.TRANSPARENT);
+                    }
+                    view.setBackgroundResource(R.color.yourColor);
                 }
-                view.setBackgroundResource(R.color.yourColor);
-            }
-        });
+            });
+        }
     }
 
     public void Editar(View view) {

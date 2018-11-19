@@ -74,6 +74,7 @@ public class VistaInsertar extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int anio, int mes, int dia) {
+                mes=mes+1;
                 date = anio+"/"+mes+"/"+dia;
                 DateFormat formato;
                 formato= new java.text.SimpleDateFormat("yyyy/MM/dd");
@@ -83,6 +84,8 @@ public class VistaInsertar extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 auxFecha.setText(date);
+
+
 
             }
         });
