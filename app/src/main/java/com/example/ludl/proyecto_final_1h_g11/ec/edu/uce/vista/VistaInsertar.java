@@ -100,7 +100,7 @@ public class VistaInsertar extends AppCompatActivity {
     }
 
     public void saveVehiculo(View v){
-
+//va;idacioimn placa
         Pattern plc = Pattern.compile("^([A-Z]{3}-[0-9]{3,4})$");
          if (plc.matcher(placa.getText().toString()).matches()== false){
              placa.setError("Placa Incorrecta");
