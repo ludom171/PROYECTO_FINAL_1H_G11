@@ -22,7 +22,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="42dp"
+            android:layout_height="61dp"
             android:orientation="horizontal">
 
             <EditText
@@ -36,13 +36,12 @@
 
             <Button
                 android:id="@+id/tn_buscar"
-                android:layout_width="wrap_content"
+                android:layout_width="5dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/boton_vehiculo"
-                android:onClick="Editar"
-                android:text=""
-                android:textColor="@android:color/background_light" />
+                android:text="Buscar"
+                 />
         </LinearLayout>
 
         <ListView
@@ -64,7 +63,7 @@
                 android:background="@drawable/boton_vehiculo"
                 android:onClick="Insertar"
                 android:text="Insertar"
-                android:textColor="@android:color/background_light" />
+                 />
 
             <Button
                 android:id="@+id/btn_eliminar"
@@ -74,7 +73,7 @@
                 android:background="@drawable/boton_vehiculo"
                 android:onClick="Eliminar"
                 android:text="Eliminar"
-                android:textColor="@android:color/background_light" />
+                android:enabled="false"/>
 
             <Button
                 android:id="@+id/btn_editar"
@@ -84,16 +83,16 @@
                 android:background="@drawable/boton_vehiculo"
                 android:onClick="Editar"
                 android:text="Editar"
-                android:textColor="@android:color/background_light" />
+                android:enabled="false"/>
+
             <Button
                 android:id="@+id/btn_listar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/boton_vehiculo"
-                android:onClick="Editar"
-                android:text="Listar"
-                android:textColor="@android:color/background_light" />
+                android:onClick="listar"
+                android:text="Listar" />
         </LinearLayout>
 
         <Button
@@ -103,7 +102,7 @@
             android:background="@drawable/boton_vehiculo"
             android:onClick="Desconectar"
             android:text="Regresar"
-            android:textColor="@android:color/background_light" />
+            android:textColor="@android:color/black" />
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
