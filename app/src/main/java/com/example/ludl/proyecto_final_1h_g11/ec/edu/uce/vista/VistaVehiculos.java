@@ -82,7 +82,7 @@ public class VistaVehiculos extends AppCompatActivity {
     }
 
     public void Desconectar(View view) {
-        Intent newform = new Intent(VistaVehiculos.this, MainActivity.class);
+        Intent newform = new Intent(VistaVehiculos.this, VistaMenu.class);
         finish();
         startActivity(newform);
     }

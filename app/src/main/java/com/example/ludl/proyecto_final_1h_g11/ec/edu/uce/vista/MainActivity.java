@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(getApplicationContext(),"No existen Usuarios Registrados",Toast.LENGTH_SHORT).show();
                 }else{
                     if(controlador.login(user.getText().toString(),pass.getText().toString())){
-                        Intent newform = new Intent(MainActivity.this,VistaVehiculos.class);
+                        Intent newform = new Intent(MainActivity.this,VistaMenu.class);
                         finish();
                         startActivity(newform);
                     }else{

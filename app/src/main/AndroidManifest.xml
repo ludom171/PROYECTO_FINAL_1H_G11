@@ -20,9 +20,14 @@
         <activity android:name=".ec.edu.uce.vista.VistaVehiculos">
         </activity>
         <activity android:name=".ec.edu.uce.vista.VistaRegistro">
-    </activity>
+        </activity>
         <activity android:name=".ec.edu.uce.vista.VistaInsertar">
         </activity>
+        <activity android:name=".ec.edu.uce.vista.VistaMenu">
+        </activity>
+        <activity android:name=".ec.edu.uce.vista.VistaReserva">
+        </activity>
+
     </application>
 
 </manifest>
