@@ -18,6 +18,7 @@ public class ServicioOperaciones {
 
     String fileUser = "usuario.json";
     String fileVehiculo = "vehiculo.json";
+    String fileReserva = "reservas.json";
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
@@ -33,9 +34,28 @@ public class ServicioOperaciones {
         escribirArchivo(fileUser, gson.toJson(list).toString());
     }
 
+    /*###########reservas##############*/
+    public void insertReserva(Reserva reserva) {
+        comprobar(fileReserva);
+        String content = leerArchivo(fileReserva);
+        List<Reserva> list = json2ListReserva(content);
+        if (list == null)
+            list = new ArrayList<>();
+        list.add(reserva);
+
+        escribirArchivo(fileUser, gson.toJson(list).toString());
+    }
+
+
     public List<Vehiculo> leerVehiculos() {
         String content = leerArchivo(fileVehiculo);
         List<Vehiculo> list = json2ListVehiculo(content);
+        return list;
+    }
+
+    public List<Reserva> leerReserva() {
+        String content = leerArchivo(fileReserva);
+        List<Reserva> list = json2ListReserva(content);
         return list;
     }
 
@@ -57,14 +77,35 @@ public class ServicioOperaciones {
                 ve.setVehiculo(v.getVehiculo(), v.getPlaca(), v.getMarca(), v.getFecFabricacion(), v.getCosto(), v.isMatriculado(), v.getColor());
                 auxSate = 2;
             }
-
         }
         if (auxSate == 1)
             list.add(v);
         escribirArchivo(fileVehiculo, gson.toJson(list).toString());
-
-
     }
+
+    /*###########reserva##############*/
+    public void guardarreserva(Reserva r) {
+        System.out.println("guardar");
+        int auxSate = 1;
+        //1 nuevo
+        //2 actualizar
+        comprobar(fileReserva);
+        String content = leerArchivo(fileReserva);
+        List<Reserva> list = json2ListReserva(content);
+        if (list == null)
+            list = new ArrayList<>();
+        for (Reserva re : list) {
+            if (re.getNum_reserva().equals(r.getNum_reserva())) {
+                //actualizar el mismo vehiculo
+                re.setReserva(re.getNum_reserva(), re.getPlaca(), re.getEmail(), re.getCelular(), re.getFecReserva(), re.getFecEntrega(), re.getValor_reserva());
+                auxSate = 2;
+            }
+        }
+        if (auxSate == 1)
+            list.add(r);
+        escribirArchivo(fileVehiculo, gson.toJson(list).toString());
+    }
+
 
     public boolean eliminarVehiculo(Vehiculo vehiculo) {
 
@@ -126,7 +167,7 @@ public class ServicioOperaciones {
         }
     }
 
-
+    //Usuario
     private List<Usuario> json2ListUsuario(String content) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Usuario> res = gson.fromJson(content, new TypeToken<List<Usuario>>() {
@@ -134,9 +175,18 @@ public class ServicioOperaciones {
         return res;
     }
 
+    //Vehiculo
     private List<Vehiculo> json2ListVehiculo(String content) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         List<Vehiculo> res = gson.fromJson(content, new TypeToken<List<Vehiculo>>() {
+        }.getType());
+        return res;
+    }
+
+    //Reserva
+    private List<Reserva> json2ListReserva(String content) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        List<Reserva> res = gson.fromJson(content, new TypeToken<List<Reserva>>() {
         }.getType());
         return res;
     }

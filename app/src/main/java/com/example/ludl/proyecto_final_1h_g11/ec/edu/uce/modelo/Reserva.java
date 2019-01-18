@@ -72,7 +72,7 @@ public class Reserva implements Serializable {
         this.valor_reserva = valor_reserva;
     }
 
-    public Reserva(String num_reserva, String placa, String email, String celular, Date fecReserva, Date fecEntrega, String valor_reserva) {
+    public void setReserva(String num_reserva, String placa, String email, String celular, Date fecReserva, Date fecEntrega, String valor_reserva) {
         this.num_reserva = num_reserva;
         this.placa = placa;
         this.email = email;
