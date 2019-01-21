@@ -1,9 +1,13 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +15,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,7 +35,8 @@ import java.util.regex.Pattern;
 
 public class VistaInsertar extends AppCompatActivity {
 
-    EditText vehiculo;
+    private static final int REQUEST_IMAGE = 100;
+
     EditText placa;
     EditText marca;
     //Date fecha;
@@ -38,15 +46,25 @@ public class VistaInsertar extends AppCompatActivity {
     TextView auxFecha;
     EditText costo;
     Boolean matricula;
-    EditText color;
+    RadioButton blanco;
+    RadioButton negro;
+    RadioButton otro;
+    Boolean estado;
+    CheckBox automovil;
+    CheckBox furgoneta;
+    CheckBox camioneta;
     Button btnSave;
+    Button takePhoto;
+    ImageView fotografia;
     //EditText correo;
 
     Boolean val_placa = false;
 
     Vehiculo auxVehiculo;
     Spinner opcionMatricula;
+    Spinner opcionReserva;
     String[] opciones = {"Si", "No"};
+    String[] opciones1 = {"Registrado", "No Registrado"};
 
 
     public VehiculosControlador getVehiculoControlador() {
@@ -59,12 +77,20 @@ public class VistaInsertar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.insertar);
 
+        fotografia = (ImageView)findViewById(R.id.image);
+        takePhoto = (Button) findViewById(R.id.btn_foto);
         btnSave = (Button) findViewById(R.id.btn_insertar);
-        vehiculo = (EditText) findViewById(R.id.txt_vehiculo);
         placa = (EditText) findViewById(R.id.txt_placa);
         marca = (EditText) findViewById(R.id.txt_marca);
         costo = (EditText) findViewById(R.id.txt_costo);
         //correo = (EditText)  findViewById(R.id.txt_correo);
+        blanco = (RadioButton) findViewById(R.id.ch_blanco);
+        negro = (RadioButton) findViewById(R.id.ch_negro);
+        otro = (RadioButton) findViewById(R.id.ch_otro);
+
+        automovil = (CheckBox) findViewById(R.id.ch_automovil);
+        furgoneta = (CheckBox) findViewById(R.id.ch_furgoneta);
+        camioneta = (CheckBox) findViewById(R.id.ch_camioneta);
 
         selecfecha = (CalendarView) findViewById(R.id.calendario);
         auxFecha = (TextView) findViewById(R.id.text_fecha);
@@ -73,7 +99,9 @@ public class VistaInsertar extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones);
         opcionMatricula.setAdapter(adapter);
 
-        color = (EditText) findViewById(R.id.txt_color);
+        opcionReserva = (Spinner) findViewById(R.id.estado);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opciones1);
+        opcionReserva.setAdapter(adapter1);
 
 
         selecfecha.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -94,8 +122,7 @@ public class VistaInsertar extends AppCompatActivity {
         });
         Intent i = getIntent();
         auxVehiculo = (Vehiculo) i.getSerializableExtra("vehiculo");
-        if (auxVehiculo != null)
-            cargarVehiculo(auxVehiculo);
+        if (auxVehiculo != null) cargarVehiculo(auxVehiculo);
 
         //Toast.makeText(this, date,Toast.LENGTH_SHORT).show();
 
@@ -120,11 +147,29 @@ public class VistaInsertar extends AppCompatActivity {
                     matricula = false;
                 }
 
-                EditText auxColor = (EditText) findViewById(R.id.txt_color);
+                String seleccion1 = opcionReserva.getSelectedItem().toString();
+                if (seleccion.equals("Con Reserva")) {
+                    estado = true;
+                } else if (seleccion.equals("Sin Reserva")) {
+                    estado = false;
+                }
+
+                //EditText auxColor = (EditText) findViewById(R.id.txt_color);
 
                 if (auxVehiculo == null) {
                     auxVehiculo = new Vehiculo();
                     auxVehiculo.setId(null);
+                }
+
+                if (automovil.isChecked()){
+                    auxVehiculo.setColor(automovil.getText().toString());
+                    automovil.toggle();
+                }else if (furgoneta.isChecked()==true){
+                    auxVehiculo.setColor(negro.getText().toString());
+                    furgoneta.toggle();
+                }else if (camioneta.isChecked()){
+                    auxVehiculo.setColor(otro.getText().toString());
+                    camioneta.toggle();
                 }
                 //    auxVehiculo.setVehiculo(vehiculo.getText().toString());
                 auxVehiculo.setPlaca(placa.getText().toString());
@@ -133,7 +178,7 @@ public class VistaInsertar extends AppCompatActivity {
                 auxVehiculo.setCosto(Double.valueOf(costo.getText().toString()));
 
                 //auxVehiculo.setMatriculado(matricula.);
-                auxVehiculo.setColor(color.getText().toString());
+
                 //auxVehiculo.setCorreo(correo.getText().toString());
 
 
@@ -143,14 +188,14 @@ public class VistaInsertar extends AppCompatActivity {
 
                 this.mensaje("Datos Guardados");
 
-                vehiculo.setText("");
+
                 placa.setText("");
                 marca.setText("");
                 //correo.setText("");
 
 
                 costo.setText("");
-                auxColor.setText("");
+                //auxColor.setText("");
 
                 Intent newform = new Intent(VistaInsertar.this, VistaVehiculos.class);
                 finish();
@@ -188,7 +233,14 @@ public class VistaInsertar extends AppCompatActivity {
         //  Toast.makeText(this, estadomatricula.toString(),Toast.LENGTH_SHORT).show();
 
         this.costo.setText(v.getCosto().toString());
-        this.color.setText(v.getColor());
+        this.negro.setText(v.getColor());
+        this.blanco.setText(v.getColor());
+        this.otro.setText(v.getColor());
+
+
+
+
+
         //lo mismo para el resto de campos
 
     }
@@ -197,6 +249,28 @@ public class VistaInsertar extends AppCompatActivity {
         Intent newform = new Intent(VistaInsertar.this, VistaVehiculos.class);
         finish();
         startActivity(newform);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode,
+                                    int resultCode, Intent data) {
+        if(requestCode == REQUEST_IMAGE
+                && resultCode == Activity.RESULT_OK) {
+            //Inicia y captura la imagen
+            Bitmap userImage =
+                    (Bitmap)data.getExtras().get("data");
+            fotografia.setImageBitmap(userImage);
+        }
+    }
+
+    public  void  TakeFoto (View view){
+        try {
+            Intent intent =
+                    new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, REQUEST_IMAGE);
+        } catch (ActivityNotFoundException e) {
+            //Handle if no application exists
+        }
     }
 
 
