@@ -1,11 +1,16 @@
 package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador;
 
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ImplementacioCRUD;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.InterfazCRUD;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ServicioOperaciones;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VehiculosControlador {
+
+    InterfazCRUD crud = new ImplementacioCRUD();
 
     public ServicioOperaciones op = new ServicioOperaciones();
 
@@ -13,17 +18,26 @@ public class VehiculosControlador {
     }
 
     public void guardarVehiculo(Vehiculo vehiculo) {
-        op.guardarVehiculo(vehiculo);
+        // op.guardarVehiculo(vehiculo);
+        crud.crear(vehiculo);
     }
 
     public VehiculosControlador() {
     }
 
     public List<Vehiculo> getList() {
-        return op.leerVehiculos();
+        //return op.leerVehiculos();
+       List<Vehiculo> a =new ArrayList<>(crud.listar());
+        for (Vehiculo v :
+                a) {
+            System.out.println("idddd: "+v.getId());
+        }
+
+        return  a;
     }
 
-    public boolean eliminar(Vehiculo vehiculo) {
-        return op.eliminarVehiculo(vehiculo);
+    public String eliminar(Vehiculo vehiculo) {
+
+        return crud.borrar(vehiculo);
     }
 }

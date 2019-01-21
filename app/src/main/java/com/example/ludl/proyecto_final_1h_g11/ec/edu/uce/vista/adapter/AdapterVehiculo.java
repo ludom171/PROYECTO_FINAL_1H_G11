@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
@@ -20,7 +19,7 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
     public AdapterVehiculo(Context context, ArrayList<Vehiculo> vehiculos) {
 
         super(context, 0, vehiculos);
-        vehiculos = new ArrayList<>(getVehiculoControlador().op.leerVehiculos());
+        vehiculos = new ArrayList<>(vehiculos);
 
     }
 
@@ -60,13 +59,13 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
 
 
         // llenar con la info cada item
-        vehiculo.setText(v.getVehiculo());
+        //vehiculo.setText(v.getVehiculo());
         placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
         //correo.setText(v.getCorreo());
-        fecha.setText(v.getFecFabricacion().toString());
-        Boolean estadomatricula=v.isMatriculado();
-        if(estadomatricula){
+        fecha.setText(v.getFechaFabricacion().toString());
+        Integer estadomatricula=v.getMatriculado();
+        if(estadomatricula==1){
             matriculado.setText("Si");
         }else {
             matriculado.setText("No");

@@ -6,6 +6,19 @@ import java.util.Date;
 
 public class Reserva implements Serializable {
 
+    public static final String TABLE_NAME = "reserva";
+    public static final String TABLE_PK = "id";
+    public static final String CREATE_TABLE = "CREATE TABLE \"reserva\" (\n" +
+            "\"id\" INTEGER NOT NULL,\n" +
+            "\"vehiculo_id\" INTEGER,\n" +
+            "\"email\" TEXT,\n" +
+            "\"celular\" TEXT,\n" +
+            "\"fechaPrestamo\" INTEGER,\n" +
+            "\"fechaEntrega\" INTEGER,\n" +
+            "\"valor\" REAL,\n" +
+            "PRIMARY KEY (\"id\") ,\n" +
+            "CONSTRAINT \"fk_reserva_vehiculo_1\" FOREIGN KEY (\"vehiculo_id\") REFERENCES \"vehiculo\" (\"id\")\n" +
+            ");";
     private String num_reserva = "";
     private String placa = "";
     private String email = "";

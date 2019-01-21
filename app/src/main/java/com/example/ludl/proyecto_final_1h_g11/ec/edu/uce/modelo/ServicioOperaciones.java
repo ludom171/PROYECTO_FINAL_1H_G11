@@ -16,10 +16,10 @@ import java.util.List;
 
 public class ServicioOperaciones {
 
-    String fileUser = "usuario.json";
-    String fileVehiculo = "vehiculo.json";
-    String fileReserva = "reservas.json";
-    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private  String fileUser = "usuario.json";
+    private  String fileVehiculo = "vehiculo.json";
+    private String fileReserva = "reservas.json";
+    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
 
     /*###########usuario##############*/
@@ -31,7 +31,7 @@ public class ServicioOperaciones {
             list = new ArrayList<>();
         list.add(usuario);
 
-        escribirArchivo(fileUser, gson.toJson(list).toString());
+        escribirArchivo(fileUser, gson.toJson(list));
     }
 
     /*###########reservas##############*/
@@ -43,20 +43,18 @@ public class ServicioOperaciones {
             list = new ArrayList<>();
         list.add(reserva);
 
-        escribirArchivo(fileUser, gson.toJson(list).toString());
+        escribirArchivo(fileUser, gson.toJson(list));
     }
 
 
     public List<Vehiculo> leerVehiculos() {
         String content = leerArchivo(fileVehiculo);
-        List<Vehiculo> list = json2ListVehiculo(content);
-        return list;
+        return json2ListVehiculo(content);
     }
 
     public List<Reserva> leerReserva() {
         String content = leerArchivo(fileReserva);
-        List<Reserva> list = json2ListReserva(content);
-        return list;
+        return json2ListReserva(content);
     }
 
 
@@ -74,13 +72,13 @@ public class ServicioOperaciones {
         for (Vehiculo ve : list) {
             if (ve.getId().equals(v.getId())) {
                 //actualizar el mismo vehiculo
-                ve.setVehiculo(v.getVehiculo(), v.getPlaca(), v.getMarca(), v.getFecFabricacion(), v.getCosto(), v.isMatriculado(), v.getColor());
+             //   ve.setVehiculo(v.getVehiculo(), v.getPlaca(), v.getMarca(), v.getFechaFabricacion(), v.getCosto(), v.isMatriculado(), v.getColor());
                 auxSate = 2;
             }
         }
         if (auxSate == 1)
             list.add(v);
-        escribirArchivo(fileVehiculo, gson.toJson(list).toString());
+        escribirArchivo(fileVehiculo, gson.toJson(list));
     }
 
     /*###########reserva##############*/
@@ -103,7 +101,7 @@ public class ServicioOperaciones {
         }
         if (auxSate == 1)
             list.add(r);
-        escribirArchivo(fileVehiculo, gson.toJson(list).toString());
+        escribirArchivo(fileVehiculo, gson.toJson(list));
     }
 
 
@@ -114,7 +112,7 @@ public class ServicioOperaciones {
         List<Vehiculo> list = json2ListVehiculo(content);
 
         for (Vehiculo v : list
-                ) {
+        ) {
             if (v.getId().equals(vehiculo.getId())) {
                 list.remove(v);
                 escribirArchivo(fileVehiculo, gson.toJson(list).toString());
@@ -213,11 +211,12 @@ public class ServicioOperaciones {
         for (int i = 0; i < list.size(); i++) {
 
             Usuario aux = list.get(i);
-            System.out.println(aux.getApellidos());
-            if (aux.getCedula().equals(user) && aux.getContrasena().equals(pass))
-                resp = true;
-        }
-        //responder peticion
-        return resp;
+            //System.out.println(aux.getApellidos());
+            //  if (aux.getCedula().equals(user) && aux.getContrasena().equals(pass))
+            //      resp = true;
+            //  }
+            //responder peticion
+
+        }return true;
     }
 }

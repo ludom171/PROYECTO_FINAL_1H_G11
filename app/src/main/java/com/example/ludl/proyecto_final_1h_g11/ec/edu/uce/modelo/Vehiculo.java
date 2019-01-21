@@ -2,22 +2,86 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Vehiculo implements Serializable {
 
-    private Long id = Calendar.getInstance().getTimeInMillis();
-    private String vehiculo = "";
+
+    public static final String TABLE_NAME = "vehiculo";
+    public static final String TABLE_PK = "id";
+    public static final String CREATE_TABLE = "CREATE TABLE \"vehiculo\" (\n" +
+            "\"id\" INTEGER  NOT NULL ,\n" +
+            "\"placa\" TEXT NOT NULL,\n" +
+            "\"marca\" TEXT,\n" +
+            "\"fechaFabricacion\" INTEGER,\n" +
+            "\"costo\" REAL,\n" +
+            "\"matriculado\" INTEGER,\n" +
+            "\"color\" TEXT,\n" +
+            "\"foto\" TEXT,\n" +
+            "\"estado\" INTEGER,\n" +
+            "\"tipo\" INTEGER,\n" +
+            "PRIMARY KEY (\"id\") \n" +
+            ");";
+    private Integer id =0;
+   // private String vehiculo = "";
     private String placa = "";
     private String marca = "";
-    private Date fecFabricacion = Calendar.getInstance().getTime();
+    private Integer fechaFabricacion =  (int)(Calendar.getInstance().getTime().getTime()/1000L);
     private Double costo = 0.0d;
-    private boolean matriculado = false;
+    private Integer matriculado = 0;
+
+    //(Blanco, Negro, Otro)
     private String color = "";
+    private String foto = "";
+    private Integer estado = 0;
+    //(1. Automovil,
+    //2. Camioneta,
+    //3. Furgoneta)
+    private String tipo = "";
+
 
     //private String correo = "";
 
     public void Vehiculo() {
+    }
+
+
+
+
+   // public String getVehiculo() {
+   //     return vehiculo;
+   // }
+
+    //public void setVehiculo(String vehiculo) {
+    //    this.vehiculo = vehiculo;
+    //}
+
+
+    //public String getCorreo() {
+    //return correo;
+    //}
+
+    //public void setCorreo(String correo) {
+    //    this.correo = correo;
+    //}
+
+    public void setVehiculo(Integer id ,String vehiculo, String placa, String marca, Integer fecFabricacion, Double costo, Integer matriculado, String color) {
+       // this.vehiculo = vehiculo;
+        this.setId(id);
+        this.setPlaca(placa);
+        this.setMarca(marca);
+        this.setFechaFabricacion(fecFabricacion);
+        this.setCosto(costo);
+        this.setMatriculado(matriculado);
+        this.setColor(color);
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getPlaca() {
@@ -36,12 +100,12 @@ public class Vehiculo implements Serializable {
         this.marca = marca;
     }
 
-    public Date getFecFabricacion() {
-        return fecFabricacion;
+    public Integer getFechaFabricacion() {
+        return fechaFabricacion;
     }
 
-    public void setFecFabricacion(Date fecFabricacion) {
-        this.fecFabricacion = fecFabricacion;
+    public void setFechaFabricacion(Integer fechaFabricacion) {
+        this.fechaFabricacion = fechaFabricacion;
     }
 
     public Double getCosto() {
@@ -52,11 +116,11 @@ public class Vehiculo implements Serializable {
         this.costo = costo;
     }
 
-    public boolean isMatriculado() {
+    public Integer getMatriculado() {
         return matriculado;
     }
 
-    public void setMatriculado(boolean matriculado) {
+    public void setMatriculado(Integer matriculado) {
         this.matriculado = matriculado;
     }
 
@@ -68,39 +132,19 @@ public class Vehiculo implements Serializable {
         this.color = color;
     }
 
-    public String getVehiculo() {
-        return vehiculo;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setVehiculo(String vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
-
-    public Long getId() {
-        return id;
+    public Integer getEstado() {
+        return estado;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    //public String getCorreo() {
-    //return correo;
-    //}
-
-    //public void setCorreo(String correo) {
-    //    this.correo = correo;
-    //}
-
-    public void setVehiculo(String vehiculo, String placa, String marca, Date fecFabricacion, Double costo, boolean matriculado, String color) {
-        this.vehiculo = vehiculo;
-        this.placa = placa;
-        this.marca = marca;
-        this.fecFabricacion = fecFabricacion;
-        this.costo = costo;
-        this.matriculado = matriculado;
-        this.color = color;
-        //this.correo = correo;
+    public void setEstado(Integer estado) {
+        this.estado = estado;
     }
 }

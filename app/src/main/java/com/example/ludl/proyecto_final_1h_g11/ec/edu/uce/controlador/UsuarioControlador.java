@@ -3,6 +3,8 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador;
 import android.content.Context;
 import android.content.ContextWrapper;
 
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ImplementacioCRUD;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.InterfazCRUD;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ServicioOperaciones;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Usuario;
 
@@ -11,12 +13,14 @@ import java.util.ArrayList;
 public class UsuarioControlador {
 
     public ServicioOperaciones op = new ServicioOperaciones();
+    InterfazCRUD crud= new ImplementacioCRUD();
 
     public void UsuarioControlador() {
     }
 
     public void agregarUsuario(Usuario usuario) {
-        op.insertUsuario(usuario);
+       // op.insertUsuario(usuario);
+        crud.crear(usuario);
     }
 
     private ArrayList<Usuario> lisUsuario;
@@ -33,7 +37,8 @@ public class UsuarioControlador {
     }
 
     public boolean login(String user, String pass) {
-        return op.login(user, pass);
+        //return op.login(user, pass);
+        return crud.login(user,pass);
 
     }
 }

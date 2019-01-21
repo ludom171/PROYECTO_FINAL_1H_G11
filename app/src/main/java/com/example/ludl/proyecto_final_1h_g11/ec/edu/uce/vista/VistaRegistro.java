@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.UsuarioControlador;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ImplementacioCRUD;
+import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.InterfazCRUD;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Usuario;
 
 import java.io.BufferedReader;
@@ -31,10 +33,10 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
     Context c;
 
     //Variables Registro Usuario
-    public static String vallistadoUsuarios ;
+    public static String vallistadoUsuarios;
 
 
-    public UsuarioControlador getUsuarioControlador(){
+    public UsuarioControlador getUsuarioControlador() {
 
         return new UsuarioControlador();
     }
@@ -46,36 +48,37 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.registro);
 
         //inicializacion de variables
-        usuario = (EditText)findViewById(R.id.usuario_registro);
-        contraseña = (EditText)findViewById(R.id.password_registro);
-        aceptar=(Button)findViewById(R.id.aceptar);
-        regresar=(Button)findViewById(R.id.regresar_registro);
+        usuario = (EditText) findViewById(R.id.usuario_registro);
+        contraseña = (EditText) findViewById(R.id.password_registro);
+        aceptar = (Button) findViewById(R.id.aceptar);
+        regresar = (Button) findViewById(R.id.regresar_registro);
 
     }
 
     //variables Registro Usuarios
-    public void save(View v){
-        try{
-            EditText auxUser =(EditText)findViewById(R.id.usuario_registro);
-            EditText auxPass =(EditText)findViewById(R.id.password_registro);
+    public void save(View v) {
+        try {
+            EditText auxUser = (EditText) findViewById(R.id.usuario_registro);
+            EditText auxPass = (EditText) findViewById(R.id.password_registro);
 
             Usuario auxUsuario = new Usuario();
-            auxUsuario.setCedula(auxUser.getText().toString());
-            auxUsuario.setContrasena(auxPass.getText().toString());
+            auxUsuario.setNombre(auxUser.getText().toString());
+             auxUsuario.setContrasenia(auxPass.getText().toString());
+
 
             this.getUsuarioControlador().agregarUsuario(auxUsuario);
 
             this.mensaje("Datos Guardados");
             auxUser.setText("");
             auxPass.setText("");
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
             this.mensaje("Datos No Guardados");
         }
     }
 
-    public void mensaje(String texto){
-        Toast.makeText(this, texto,Toast.LENGTH_LONG).show();
+    public void mensaje(String texto) {
+        Toast.makeText(this, texto, Toast.LENGTH_LONG).show();
     }
 
     //variables Registro Usuarios
@@ -84,8 +87,8 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
     }
 
-    public  void  Regresar(View view){
-        Intent newform = new Intent(VistaRegistro.this,MainActivity.class);
+    public void Regresar(View view) {
+        Intent newform = new Intent(VistaRegistro.this, MainActivity.class);
         finish();
         startActivity(newform);
     }
