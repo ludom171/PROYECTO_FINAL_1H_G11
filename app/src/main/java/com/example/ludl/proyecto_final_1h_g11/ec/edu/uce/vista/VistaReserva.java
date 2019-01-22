@@ -111,7 +111,7 @@ public class VistaReserva extends AppCompatActivity {
 
         Intent i = getIntent();
 
-        //////ojojojojojojojo
+        //////ojojojojojojojoksksksksksksk
         //auxreserva = (Reserva) i.getSerializableExtra("reserva");
         //if (auxreserva != null) cargarReserva(auxreserva);
 
