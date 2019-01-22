@@ -87,6 +87,30 @@
                 android:inputType="textPersonName" />
 
             <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TIPO:" />
+
+            <CheckBox
+                android:id="@+id/re_automovil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Automovil" />
+
+            <CheckBox
+                android:id="@+id/re_camioneta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Camioneta" />
+
+            <CheckBox
+                android:id="@+id/re_furgoneta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Furgoneta" />
+
+            <TextView
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -12,7 +12,9 @@ import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public abstract class AbtractOperations<T> {
 
@@ -34,8 +36,7 @@ public abstract class AbtractOperations<T> {
 
             Object o = f.get(entity);
 
-            db.delete(getTableName(entity), getTablePK(entity) + " = ?",
-                    new String[]{String.valueOf(o.toString())});
+            db.delete(getTableName(entity), getTablePK(entity) + " = ?", new String[]{String.valueOf(o.toString())});
             db.close();
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
@@ -52,8 +53,7 @@ public abstract class AbtractOperations<T> {
 
         Field[] f = entity.getClass().getDeclaredFields();
 
-        for (Field ff :
-                f) {
+        for (Field ff : f) {
             if (Modifier.isPrivate(ff.getModifiers())) {
                 ff.setAccessible(true);
                 try {
@@ -92,16 +92,15 @@ public abstract class AbtractOperations<T> {
         if (o != null && entity instanceof Usuario) {
             // insert new row
             db.insert(getTableName(entity), null, values);
-        } else if (o ==null && entity instanceof Vehiculo) {
+        } else if (o == null && entity instanceof Vehiculo) {
             db.insert(getTableName(entity), null, values);
-        }
-        else if (o ==null && entity instanceof Reserva) {
+        } else if (o == null && entity instanceof Reserva) {
+            values.put("id", generateReservaId());
             db.insert(getTableName(entity), null, values);
         }
         //update row
         else {
-            db.update(getTableName(entity), values, getTablePK(entity) + " = ?",
-                    new String[]{o.toString()});
+            db.update(getTableName(entity), values, getTablePK(entity) + " = ?", new String[]{o.toString()});
         }
 
         // close db connection
@@ -109,6 +108,10 @@ public abstract class AbtractOperations<T> {
 
     }
 
+    private int generateReservaId() {
+        Random r = new Random();
+        return r.nextInt((9999 - 1) + 1) + 1;
+    }
 
     public List<T> listar() {
         List<T> resp = new ArrayList<>();
@@ -132,8 +135,7 @@ public abstract class AbtractOperations<T> {
                 }
                 Field[] f = obj.getClass().getDeclaredFields();
 
-                for (Field ff :
-                        f) {
+                for (Field ff : f) {
                     if (Modifier.isPrivate(ff.getModifiers())) {
                         ff.setAccessible(true);
 
@@ -171,29 +173,33 @@ public abstract class AbtractOperations<T> {
         db.close();
 
 
-        List<Vehiculo> a = (List<Vehiculo>) resp;
-
-        for (Vehiculo vv : a
-        ) {
-            System.out.println();
-            System.out.println(vv.getId());
-            System.out.println();
-
-        }
-
         System.out.println("repo fin " + resp.size());
 
         return resp;
     }
 
+    public T buscar(Collection[] lista, Object parametro) {
+
+        T obj = null;
+        Object aux = lista[0];
+
+        if (aux instanceof Vehiculo && parametro instanceof Integer) {
+
+        } else if (aux instanceof Reserva && parametro instanceof Integer) {
+
+        } else if (aux instanceof Reserva && parametro instanceof String) {
+        }
+
+
+        return obj;
+    }
 
     private String getTableName(T entity) {
 
         String table_name = "";
         ContentValues values = new ContentValues();
         Field[] f0 = entity.getClass().getFields();
-        for (Field f : f0
-        ) {
+        for (Field f : f0) {
             try {
                 if (f.getName().toString().equals("TABLE_NAME"))
                     table_name = (String) f.get(entity);
@@ -210,11 +216,9 @@ public abstract class AbtractOperations<T> {
         String table_name = "";
         ContentValues values = new ContentValues();
         Field[] f0 = entity.getClass().getFields();
-        for (Field f : f0
-        ) {
+        for (Field f : f0) {
             try {
-                if (f.getName().toString().equals("TABLE_PK"))
-                    table_name = (String) f.get(entity);
+                if (f.getName().toString().equals("TABLE_PK")) table_name = (String) f.get(entity);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

@@ -12,9 +12,12 @@ import com.example.ludl.proyecto_final_1h_g11.R;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.controlador.VehiculosControlador;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
+
+    DateFormat formato;
 
     public AdapterVehiculo(Context context, ArrayList<Vehiculo> vehiculos) {
 
@@ -45,7 +48,7 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         }
 
         // Ver los input para poner los datos
-
+        formato = new java.text.SimpleDateFormat("yyyy/MM/dd");
         TextView vehiculo = (TextView) convertView.findViewById(R.id.vehiculo);
         TextView placa = (TextView) convertView.findViewById(R.id.placa);
         TextView marca = (TextView) convertView.findViewById(R.id.marca);
@@ -63,7 +66,7 @@ public class AdapterVehiculo extends ArrayAdapter<Vehiculo> {
         placa.setText(v.getPlaca());
         marca.setText(v.getMarca());
         //correo.setText(v.getCorreo());
-        fecha.setText(v.getFechaFabricacion().toString());
+        fecha.setText(formato.format((long)v.getFechaFabricacion()*1000));
         Integer estadomatricula=v.getMatriculado();
         if(estadomatricula==1){
             matriculado.setText("Si");

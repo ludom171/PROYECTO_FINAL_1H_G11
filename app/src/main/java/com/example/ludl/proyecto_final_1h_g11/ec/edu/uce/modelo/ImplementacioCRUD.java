@@ -4,6 +4,7 @@ import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.db.RepoReserva;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.db.RepoUsuario;
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.db.RepoVehiculo;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -43,7 +44,36 @@ public class ImplementacioCRUD implements InterfazCRUD {
     }
 
     @Override
-    public Object buscarPorParametro(Collection[] lista, Object parametro) {
+    public Object buscarPorParametro(Collection lista, Object parametro) {
+
+        List<Vehiculo>  res = new ArrayList<>(lista);
+
+        Object aux = lista.toArray()[0];
+
+        if (aux instanceof Vehiculo && parametro instanceof String) {
+            System.out.println("buscando vehiculo por placa");
+            for (Vehiculo v : res) {
+                if(v.getPlaca().equals(parametro)){
+                    System.out.println("encontrado");
+                    return v;}
+            }
+
+        }
+
+        if (aux instanceof Vehiculo && parametro instanceof Integer) {
+            for (Vehiculo v : res) {
+                if(v.getId()==parametro)
+                    return v;
+            }
+
+        }
+        else if (aux instanceof Reserva && parametro instanceof Integer) {
+
+        } else if (aux instanceof Reserva && parametro instanceof String) {
+        }
+
+
+
         return null;
     }
 
@@ -51,7 +81,7 @@ public class ImplementacioCRUD implements InterfazCRUD {
     public Collection listar() {
         Object o = null;
 
-        return repoVehiculo.listar();
+        return repoReserva.listar();
 
     }
 
@@ -59,7 +89,13 @@ public class ImplementacioCRUD implements InterfazCRUD {
     public boolean login(String nombre, String contraseia){
         return repoUser.login(nombre,contraseia);
     }
+    @Override
+    public Collection listarVehiculo() {
+        Object o = null;
 
+        return repoVehiculo.listar();
+
+    }
 /*
     private <T> T castt(Object o) {
         if (o instanceof Usuario) {

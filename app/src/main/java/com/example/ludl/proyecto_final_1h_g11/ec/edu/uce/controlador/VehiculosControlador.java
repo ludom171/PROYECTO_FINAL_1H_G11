@@ -6,13 +6,14 @@ import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.ServicioOperacio
 import com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo.Vehiculo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class VehiculosControlador {
 
     InterfazCRUD crud = new ImplementacioCRUD();
 
-    public ServicioOperaciones op = new ServicioOperaciones();
+   // public ServicioOperaciones op = new ServicioOperaciones();
 
     public void VehiculosControlador() {
     }
@@ -27,7 +28,7 @@ public class VehiculosControlador {
 
     public List<Vehiculo> getList() {
         //return op.leerVehiculos();
-       List<Vehiculo> a =new ArrayList<>(crud.listar());
+       List<Vehiculo> a =new ArrayList<>(crud.listarVehiculo());
         for (Vehiculo v :
                 a) {
             System.out.println("idddd: "+v.getId());
@@ -39,5 +40,10 @@ public class VehiculosControlador {
     public String eliminar(Vehiculo vehiculo) {
 
         return crud.borrar(vehiculo);
+    }
+
+    public Vehiculo buscar(Collection lista,String placa) {
+
+        return (Vehiculo)crud.buscarPorParametro(lista,placa);
     }
 }

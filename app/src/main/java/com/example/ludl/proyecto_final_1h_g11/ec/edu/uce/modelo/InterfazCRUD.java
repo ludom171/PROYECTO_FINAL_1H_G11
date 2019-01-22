@@ -44,7 +44,7 @@ public interface InterfazCRUD {
      * @param parametro El parametro del Objeto que se está buscando
      * @return El Objeto encontrado, si el objeto no existe, retorna null
      */
-    public Object buscarPorParametro(Collection lista[], Object parametro);
+    public Object buscarPorParametro(Collection lista, Object parametro);
 
     /**
      * Metodo que permita listar los Objetos
@@ -55,6 +55,6 @@ public interface InterfazCRUD {
 
 
     public boolean login(String nombre, String contraseia);
-
+    public Collection listarVehiculo();
 
 }

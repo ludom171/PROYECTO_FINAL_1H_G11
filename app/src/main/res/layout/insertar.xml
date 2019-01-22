@@ -98,19 +98,19 @@
                 android:layout_height="wrap_content"
                 android:text="COLOR" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/ch_blanco"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="1. Blanco" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/ch_negro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="2. Negro" />
 
-            <RadioButton
+            <CheckBox
                 android:id="@+id/ch_otro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -160,8 +160,23 @@
                 android:text="FOTO"
                 android:textColor="@android:color/background_light" />
 
+            <Button
+                android:id="@+id/galeria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/boton_insertar_editar"
+                android:onClick="Galeria"
+                android:text="GALERIA"
+                android:textColor="@android:color/background_light" />
+
             <ImageView
                 android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/foto_gallery"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerInside" />

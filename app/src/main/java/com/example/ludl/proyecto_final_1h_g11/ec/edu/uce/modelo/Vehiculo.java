@@ -8,24 +8,12 @@ public class Vehiculo implements Serializable {
 
     public static final String TABLE_NAME = "vehiculo";
     public static final String TABLE_PK = "id";
-    public static final String CREATE_TABLE = "CREATE TABLE \"vehiculo\" (\n" +
-            "\"id\" INTEGER  NOT NULL ,\n" +
-            "\"placa\" TEXT NOT NULL,\n" +
-            "\"marca\" TEXT,\n" +
-            "\"fechaFabricacion\" INTEGER,\n" +
-            "\"costo\" REAL,\n" +
-            "\"matriculado\" INTEGER,\n" +
-            "\"color\" TEXT,\n" +
-            "\"foto\" TEXT,\n" +
-            "\"estado\" INTEGER,\n" +
-            "\"tipo\" INTEGER,\n" +
-            "PRIMARY KEY (\"id\") \n" +
-            ");";
-    private Integer id =0;
-   // private String vehiculo = "";
+    public static final String CREATE_TABLE = "CREATE TABLE \"vehiculo\" (\n" + "\"id\" INTEGER  NOT NULL ,\n" + "\"placa\" TEXT NOT NULL,\n" + "\"marca\" TEXT,\n" + "\"fechaFabricacion\" INTEGER,\n" + "\"costo\" REAL,\n" + "\"matriculado\" INTEGER,\n" + "\"color\" TEXT,\n" + "\"foto\" TEXT,\n" + "\"estado\" INTEGER,\n" + "\"tipo\" INTEGER,\n" + "PRIMARY KEY (\"id\") \n" + ");";
+    private Integer id = 0;
+    // private String vehiculo = "";
     private String placa = "";
     private String marca = "";
-    private Integer fechaFabricacion =  (int)(Calendar.getInstance().getTime().getTime()/1000L);
+    private Integer fechaFabricacion = (int) (Calendar.getInstance().getTime().getTime() / 1000L);
     private Double costo = 0.0d;
     private Integer matriculado = 0;
 
@@ -45,27 +33,8 @@ public class Vehiculo implements Serializable {
     }
 
 
-
-
-   // public String getVehiculo() {
-   //     return vehiculo;
-   // }
-
-    //public void setVehiculo(String vehiculo) {
-    //    this.vehiculo = vehiculo;
-    //}
-
-
-    //public String getCorreo() {
-    //return correo;
-    //}
-
-    //public void setCorreo(String correo) {
-    //    this.correo = correo;
-    //}
-
-    public void setVehiculo(Integer id ,String vehiculo, String placa, String marca, Integer fecFabricacion, Double costo, Integer matriculado, String color) {
-       // this.vehiculo = vehiculo;
+    public void setVehiculo(Integer id, String vehiculo, String placa, String marca, Integer fecFabricacion, Double costo, Integer matriculado, String color) {
+        // this.vehiculo = vehiculo;
         this.setId(id);
         this.setPlaca(placa);
         this.setMarca(marca);
@@ -84,10 +53,17 @@ public class Vehiculo implements Serializable {
         this.id = id;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public String getPlaca() {
         return placa;
     }
-
     public void setPlaca(String placa) {
         this.placa = placa;
     }
@@ -147,4 +123,6 @@ public class Vehiculo implements Serializable {
     public void setEstado(Integer estado) {
         this.estado = estado;
     }
+
+
 }

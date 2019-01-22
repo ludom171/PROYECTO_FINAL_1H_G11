@@ -29,6 +29,8 @@ public class VistaVehiculos extends AppCompatActivity {
     ArrayList<Vehiculo> arrayOfUsers;
 
     Button eliminar;
+
+    EditText placa;
     Button editar;
 
     public VehiculosControlador getVehiculoControlador() {
@@ -42,6 +44,7 @@ public class VistaVehiculos extends AppCompatActivity {
         setContentView(R.layout.vehiculos);
         eliminar = (Button) findViewById(R.id.btn_eliminar);
         editar = (Button) findViewById(R.id.btn_editar);
+        placa = (EditText) findViewById(R.id.txtb);
 
     }
 
@@ -69,6 +72,17 @@ public class VistaVehiculos extends AppCompatActivity {
         }
     }
 
+    public void buscar(View view) {
+        Toast.makeText(getApplicationContext(), "Buscando...", Toast.LENGTH_SHORT).show();
+
+        Vehiculo v = getVehiculoControlador().buscar(getVehiculoControlador().getList(),placa.getText().toString());
+        if (v != null) {
+            ArrayList res = new ArrayList();
+            res.add(v);
+            pintarElemento(res);
+        }
+    }
+
     public void listar(View view) {
         //  File file = new File(GlobalApplication.getAppContext().getFilesDir(), "vehiculo.json");
         // if (!file.exists()) {
@@ -77,14 +91,20 @@ public class VistaVehiculos extends AppCompatActivity {
         //recupera vehiculos
         //  arrayOfUsers = new ArrayList<Vehiculo>(getVehiculoControlador().getList());
         arrayOfUsers = (ArrayList<Vehiculo>) getVehiculoControlador().getList();
+        pintarElemento(arrayOfUsers);
+
+    }
+
+    private void pintarElemento(ArrayList<Vehiculo> list){
+
         for (Vehiculo vv :
-                arrayOfUsers) {
+                list) {
             System.out.println("boton listar: "+vv.getId());
             System.out.println("boton listar: "+vv.getPlaca());
         }
-                
+
         //formato de lista para mosyrar vehiculos
-        adapter = new AdapterVehiculo(this, arrayOfUsers);
+        adapter = new AdapterVehiculo(this, list);
         final ListView listView = (ListView) findViewById(R.id.listaVehiculos);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -92,7 +112,8 @@ public class VistaVehiculos extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 seleccionado = adapter.getItem(position);
-                System.out.println(position);
+                System.out.println(seleccionado.getId());
+                System.out.println("fecha fab:"+seleccionado.getFechaFabricacion());
                 System.out.println(id);
 
                 for (int a = 0; a < parent.getChildCount(); a++) {
@@ -105,7 +126,6 @@ public class VistaVehiculos extends AppCompatActivity {
 
         editar.setEnabled(true);
         eliminar.setEnabled(true);
-
     }
 
     public void Desconectar(View view) {

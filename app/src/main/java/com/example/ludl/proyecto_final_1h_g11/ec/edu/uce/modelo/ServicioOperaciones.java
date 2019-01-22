@@ -93,9 +93,9 @@ public class ServicioOperaciones {
         if (list == null)
             list = new ArrayList<>();
         for (Reserva re : list) {
-            if (re.getNum_reserva().equals(r.getNum_reserva())) {
+            if (re.getId().equals(r.getId())) {
                 //actualizar el mismo vehiculo
-                re.setReserva(re.getNum_reserva(), re.getPlaca(), re.getEmail(), re.getCelular(), re.getFecReserva(), re.getFecEntrega(), re.getValor_reserva());
+           //     re.setReserva(re.getId(), re.getVehiculo_id(), re.getEmail(), re.getCelular(), re.getFecReserva(), re.getFecEntrega(), re.getValor());
                 auxSate = 2;
             }
         }

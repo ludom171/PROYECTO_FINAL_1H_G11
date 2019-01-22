@@ -2,7 +2,6 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.modelo;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Reserva implements Serializable {
 
@@ -13,36 +12,48 @@ public class Reserva implements Serializable {
             "\"vehiculo_id\" INTEGER,\n" +
             "\"email\" TEXT,\n" +
             "\"celular\" TEXT,\n" +
-            "\"fechaPrestamo\" INTEGER,\n" +
-            "\"fechaEntrega\" INTEGER,\n" +
+            "\"fecReserva\" INTEGER,\n" +
+            "\"fecEntrega\" INTEGER,\n" +
             "\"valor\" REAL,\n" +
             "PRIMARY KEY (\"id\") ,\n" +
             "CONSTRAINT \"fk_reserva_vehiculo_1\" FOREIGN KEY (\"vehiculo_id\") REFERENCES \"vehiculo\" (\"id\")\n" +
             ");";
-    private String num_reserva = "";
-    private String placa = "";
+    private String id = "";
+    private Integer vehiculo_id = -1;
     private String email = "";
     private String celular = "";
+    //private String placa = "";
 
-    private Date fecReserva = Calendar.getInstance().getTime();
-    private Date fecEntrega = Calendar.getInstance().getTime();
+    private Integer fecReserva = (int)(Calendar.getInstance().getTimeInMillis()/1000);
+    private Integer fecEntrega = (int)(Calendar.getInstance().getTimeInMillis()/1000);
 
-    private String valor_reserva = "";
+    private Double valor =0.0d;
 
-    public String getNum_reserva() {
-        return num_reserva;
+
+    public void setReserva(Integer num_reserva, String placa, String email, String celular, Integer fecReserva, Integer fecEntrega, Double valor_reserva) {
+        this.setId(getId());
+        this.setVehiculo_id(getVehiculo_id());
+        this.setEmail(email);
+        this.setCelular(celular);
+        this.setFecReserva(fecReserva);
+        this.setFecEntrega(fecEntrega);
+        this.setValor(valor_reserva);
     }
 
-    public void setNum_reserva(String num_reserva) {
-        this.num_reserva = num_reserva;
+    public String getId() {
+        return id;
     }
 
-    public String getPlaca() {
-        return placa;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public Integer getVehiculo_id() {
+        return vehiculo_id;
+    }
+
+    public void setVehiculo_id(Integer vehiculo_id) {
+        this.vehiculo_id = vehiculo_id;
     }
 
     public String getEmail() {
@@ -61,37 +72,35 @@ public class Reserva implements Serializable {
         this.celular = celular;
     }
 
-    public Date getFecReserva() {
+   /* public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+*/
+    public Integer getFecReserva() {
         return fecReserva;
     }
 
-    public void setFecReserva(Date fecReserva) {
+    public void setFecReserva(Integer fecReserva) {
         this.fecReserva = fecReserva;
     }
 
-    public Date getFecEntrega() {
+    public Integer getFecEntrega() {
         return fecEntrega;
     }
 
-    public void setFecEntrega(Date fecEntrega) {
+    public void setFecEntrega(Integer fecEntrega) {
         this.fecEntrega = fecEntrega;
     }
 
-    public String getValor_reserva() {
-        return valor_reserva;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setValor_reserva(String valor_reserva) {
-        this.valor_reserva = valor_reserva;
-    }
-
-    public void setReserva(String num_reserva, String placa, String email, String celular, Date fecReserva, Date fecEntrega, String valor_reserva) {
-        this.num_reserva = num_reserva;
-        this.placa = placa;
-        this.email = email;
-        this.celular = celular;
-        this.fecReserva = fecReserva;
-        this.fecEntrega = fecEntrega;
-        this.valor_reserva = valor_reserva;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 }
