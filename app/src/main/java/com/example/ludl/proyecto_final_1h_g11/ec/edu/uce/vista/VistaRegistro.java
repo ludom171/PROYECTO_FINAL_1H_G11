@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.regex.Pattern;
 
 public class VistaRegistro extends AppCompatActivity implements View.OnClickListener {
     EditText usuario;
@@ -30,6 +31,8 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
     String txtcompleto;
     Button aceptar;
     Button regresar;
+
+    Boolean val_pass = false;
     Context c;
 
     //Variables Registro Usuario
@@ -57,24 +60,36 @@ public class VistaRegistro extends AppCompatActivity implements View.OnClickList
 
     //variables Registro Usuarios
     public void save(View v) {
-        try {
-            EditText auxUser = (EditText) findViewById(R.id.usuario_registro);
-            EditText auxPass = (EditText) findViewById(R.id.password_registro);
 
-            Usuario auxUsuario = new Usuario();
-            auxUsuario.setNombre(auxUser.getText().toString());
-             auxUsuario.setContrasenia(auxPass.getText().toString());
+        Pattern plc = Pattern.compile("^(?=\\w*[A-Z])\\S{8,16}$");
+        if (plc.matcher(contraseña.getText().toString()).matches() == false) {
+            contraseña.setError("El password debe tener al menos 8 caracteres y minino una mayuscula");
+            Toast.makeText(this, "Formato Incorrecto placa", Toast.LENGTH_SHORT).show();
+            val_pass = false;
+        } else {
+            contraseña.setError(null);
+            val_pass = true;
+            try {
+                EditText auxUser = (EditText) findViewById(R.id.usuario_registro);
+                EditText auxPass = (EditText) findViewById(R.id.password_registro);
+
+                Usuario auxUsuario = new Usuario();
+                auxUsuario.setNombre(auxUser.getText().toString());
+                auxUsuario.setContrasenia(auxPass.getText().toString());
 
 
-            this.getUsuarioControlador().agregarUsuario(auxUsuario);
+                this.getUsuarioControlador().agregarUsuario(auxUsuario);
 
-            this.mensaje("Datos Guardados");
-            auxUser.setText("");
-            auxPass.setText("");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            this.mensaje("Datos No Guardados");
+                this.mensaje("Datos Guardados");
+                auxUser.setText("");
+                auxPass.setText("");
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                this.mensaje("Datos No Guardados");
+            }
         }
+
+
     }
 
     public void mensaje(String texto) {

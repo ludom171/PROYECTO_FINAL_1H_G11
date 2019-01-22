@@ -310,7 +310,7 @@ public class VistaInsertar extends AppCompatActivity {
             //Inicia y captura la imagen
             Bitmap userImage = (Bitmap) data.getExtras().get("data");
             fotografia.setImageBitmap(userImage);
-            foto_gallery.setImageURI(imageUri);
+            //foto_gallery.setImageURI(imageUri);
         }
     }
 

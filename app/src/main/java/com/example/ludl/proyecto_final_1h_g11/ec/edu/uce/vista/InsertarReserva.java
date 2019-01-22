@@ -2,11 +2,13 @@ package com.example.ludl.proyecto_final_1h_g11.ec.edu.uce.vista;
 
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -58,7 +60,7 @@ public class InsertarReserva extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        controladorReserva=getReservaControlador();
+        controladorReserva = getReservaControlador();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reserva);
 
@@ -163,9 +165,9 @@ public class InsertarReserva extends AppCompatActivity {
 //guardar los campos en el objeto reserta
                 //    auxVehiculo.setVehiculo(vehiculo.getText().toString());
 
-              //  auxreserva.setId(num_reserva.getText().toString());
+                //  auxreserva.setId(num_reserva.getText().toString());
 
-              String msg= controladorReserva.guadarReserva(auxreserva,placa.getText().toString());
+                String msg = controladorReserva.guadarReserva(auxreserva, placa.getText().toString());
                 Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
                 this.mensaje("Datos Guardados");
                 this.mensaje("Reserva Guardada");
@@ -181,6 +183,8 @@ public class InsertarReserva extends AppCompatActivity {
                 Intent newform = new Intent(InsertarReserva.this, VistaReserva.class);
                 finish();
                 startActivity(newform);
+
+
 
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -200,6 +204,30 @@ public class InsertarReserva extends AppCompatActivity {
         finish();
         startActivity(newform);
     }
+
+    private void sendEmail( ){
+        Log.e("Test email:", "enviando email");
+        String[] TO = {""};
+        String[] CC = {""};
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+// Esto podrás modificarlo si quieres, el asunto y el cuerpo del mensaje
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Asunto");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Escribe aquí tu mensaje");
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Enviar email..."));
+            finish();
+        } catch (android.content.ActivityNotFoundException ex) {
+            Toast.makeText(InsertarReserva.this,
+                    "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 }
 
